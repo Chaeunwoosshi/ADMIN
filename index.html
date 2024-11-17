@@ -1532,7 +1532,7 @@ function handleTouchMove(event) {
             const response = await fetch(rssUrl);
             const data = await response.json();
             displayRandomItems(data.items);
-            const orderedCategories = ['Series', 'Movie']; // Order categories here
+            const orderedCategories = ['Short Drama', 'Series', 'Movie']; // Order categories here
             displayCategories(data.items, orderedCategories);
         } catch (error) {
             console.error('Error fetching RSS feed:', error);
