@@ -80,6 +80,24 @@
     }
 
 
+/* Styles for the floating icon */
+.floating-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.floating-icon img {
+    width: 40px; /* Icon size */
+    height: 40px;
+    object-fit: contain; /* Ensure the logo scales well */
+}
+
+.floating-icon:hover {
+    background-color: #e64a19; /* Slightly darker orange on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+}
 
 /* Menu Button Bar */
 .menu-btn-bar {
@@ -770,6 +788,15 @@ border-radius: 5px;
 </style>
 </head>
 <body>
+
+
+   <!-- Floating Blogger Icon -->
+    <a href="https://www.blogger.com/blogger.g?blogID=3434317895581666633#editor/target=post;postID=1234567890" target="_blank">
+        <div class="floating-icon">
+            <!-- Blogger Logo -->
+            <img src="https://cdn-icons-png.flaticon.com/512/4494/4494538.png" alt="Blogger" />
+        </div>
+    </a>
 
   <header>
 
