@@ -13,15 +13,767 @@
 <script src="https://kit.fontawesome.com/8ca23df693.js" crossorigin="anonymous"></script>
  <script type="text/javascript" src="js/modernizr.custom.79639.js"></script> 		
  <noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
- 
-<link rel="stylesheet" href="style.css">
 <style>
 
+    /* CSS styles */
+    :root {
+      --background-color: #e5e5e5;
+      --menu-colorbg:#e1e1e1 ;
+      --theme-color:#17c349e3;
+      --text-color: #5a5a5a;
+      --button-background-color: #17c349e3;
+      --button-text-color: #fff;
+      --table-border-color: #ccc;
+      --table-header-color: #f2f2f2;
+      --placeholder-bg: #a6a9a60a;
+      --ep-color: #424242;
+      --eph2-color: #17c349e3;
+      --toggle-icon:crimson;
+      --active-color:#17c349e3;
+      --dropdownbg-color:#e7ebec;
+      --border-color:#e3e3e3;
+      --copy-color:#c2c2c2;
+    }
+
+    /* Dark mode */
+    body.dark-mode {
+      --background-color: #171c28;
+      --theme-color:#149f3ce3;
+      --menu-colorbg:#191e2a;
+      --text-color: #cecece;
+      --button-background-color: #0056b3;
+      --table-border-color: #666;
+      --table-header-color: #444;
+      --placeholder-bg: #2d3b4d3b;
+      --ep-color: #cdcdcd;
+      --eph2-color: #00bfffbe;
+      --active-color:#0faf3d;
+      --toggle-icon:#1188b0;
+      --dropdownbg-color:#181d23;
+      --border-color:#272727;
+      --copy-color:#4c4c4c;
+    }
+
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+    
+   
+    header {
+     border-bottom:1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background-color: var(--menu-colorbg);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 20px;
+      z-index: 1000; /* Ensure header is above other content */
+    }
+
+
+
+
+/* Menu Button Bar */
+.menu-btn-bar {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  z-index: 9999; /* Ensure it appears above other elements */
+}
+.menu-btn-bar svg{
+  position: absolute;
+  top:-3px;
+}
+.menu-btn-bar img{
+  width:20px;
+  position: absolute;
+  top:0px;
+  left:30px;
+}
+.menu-btn-bar h4{
+  position: absolute;
+  top:-20px;
+  color:#1ec963;
+  left:55px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-start;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99999999;
+}
+
+.overlay .sidebar {
+  margin: 10px 0 0 10px  ;
+  background: var(--background-color) ;
+  border-radius:10px;
+  width: 50%;
+  height: 85%;
+  padding: 20px;
+  color:var(--text-color);
+ 
+}
+.overlay .sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.overlay .sidebar-header{
+   width:200px;
+   height:40px;
+   padding:10px;
+  margin:-20px;
+  border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+  position:absolute;
+  background-color:var(--menu-colorbg) ;
+  border-bottom:solid 1px var(--border-color) ;
+}
+
+    .datetime-header {
+      
+      color: var(--text-color) ;
+      font-size: 15px;
+      margin-left:5px;
+      display: inline-block;
+      width: 300px;
+    }
+
+    .datetime {
+      font-size: 15px;
+    }
+
+.overlay .sidebar-footer{
+  position:absolute;
+   bottom:87px;
+   width:200px;
+   height:20px;
+   padding:10px;
+  margin:-20px;
+border-top:solid 1px var(--border-color) ;
+  border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  background-color:var(--menu-colorbg) ;
+}
+.overlay .sidebar ul li {
+  margin: 15px 0;
+}
+
+.overlay .sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+  .key-header {
+      color: var(--text-color) ;
+      margin-bottom: 40px;
+      font-size:15px;
+    }
+
+    .key-container {
+      padding: 0px;
+      border-radius: 10px;
+      text-align: center;
+      width: 100%;
+      font-size:14px;
+    }
+
+    .key-display {
+      margin: 5px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      color: #555;
+      font-size: 14px;
+      word-wrap: break-word;
+    }
+
+    .key-button {
+      padding: 7px 15px;
+      margin: -10px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+    }
+
+    .key-button:hover {
+      background-color: #0056b3;
+    }
+
+    #key-copy-button {
+      background-color:transparent;
+      position:relative;
+      top:30px;
+      right:-70px;
+      color:grey;
+    }
+
+ 
+
+   .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px; /* Spacing between icons */
+      align-items: center;
+     font-size: 15px;
+    }
+
+    .social-icons a {
+      color:var(--text-color) ;
+      text-decoration: none;
+      transition: color 0.3s ease;
+font-size: 20px;
+    }
+
+    .social-icons a:hover {
+      color: #4CAF50; /* Change to a color when hovered */
+    }
+
+    .toggle-theme{
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      margin-right: 40px; /* Add margin to the right of the button */
+    }
+
+  .fa-adjust{
+    color:var(--toggle-icon);
+  }
+    .bottom-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+     border-top:1px solid var(--border-color);
+      background-color: var(--menu-colorbg);
+      padding: 8px 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000; /* Ensure bottom menu is above other content */
+    }
+
+    .bottom-menu button {
+      border: none;
+      outline:none;
+      background-color: transparent;
+      color:var(--text-color);
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: color 0.3s, opacity 0.3s;
+    }
+
+    .bottom-menu button i {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .bottom-menu button:hover {
+      color: var(--theme-hover-color); /* Change to your desired hover color */
+    }
+
+    .bottom-menu button.active {
+      color: var(--active-color); /* Change to your desired active color */
+    }
+    .bottom-menu button.active::after {
+      content: "";
+      position:absolute;
+      margin-top:38px;
+     margin-left:45px;
+      width: 45px;
+      height: 1px;
+      border-bottom:solid 2px #16dd4b;
+      border-radius:20px;
+      z-index: 99;
+      transition: transform 0.3s ease;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .content {
+      margin-top: 50px; /* Adjust this value to prevent content from being hidden behind the header */
+      margin-bottom: 60px; /* Adjust this value to prevent content from being hidden behind the bottom menu */
+    }
+
+      .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item {
+            min-width: 100%; /* Show one item per screen */
+            height: 150px; /* Fixed height for images */
+            position: relative;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .carousel-title {
+           color:lightgrey;
+            position: absolute;
+            bottom: -5px;
+            left: 0px;
+            font-size: 14px;           
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+        }
+        .indicator {
+            height: 5px;
+            width: 5px;
+            margin: 0 3px;
+            border-radius: 10%;
+            background-color: #a1a1a1;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: #1df147; /* Active indicator color */
+        }
+        .category-section {
+            margin-bottom: 20px;
+            
+        }
+        .category-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+        .horizontal-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        .item {
+            flex: 0 0 auto;
+            width: 100px; /* Ensures three items fit on the screen */
+            margin-bottom:5px;
+            border:solid 1px var(--border-color);
+box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      color:var(---text-color) ;
+            margin-right: 8px;
+            scroll-snap-align: start;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative; /* Required for overlay */
+            transition: transform 0.3s ease-in-out; /* Zoom effect on hover */
+        }
+        .item img {
+            width: 100%;
+            height: 150px; /* Fixed height */
+            object-fit: cover; /* Ensures image fills the space while maintaining aspect ratio */
+            display: block;
+            border-bottom: 1px solid #333;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Smooth zoom and darkening effect */
+        }
+        .item-title {
+            font-size: 12px;
+            padding: 6px;
+            text-align: center;
+           color:var(---text-color) ;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .play-button {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .play-button:before {
+            content: '▶';
+            color: #1df147; /* Green color for play icon */
+            font-size: 25px;
+            line-height: 40px;
+            margin-left:2px;
+        }
+        .item:hover .play-button {
+            opacity: 1;
+        }
+        .item:hover img {
+            transform: scale(1.1); /* Zoom in on hover */
+            filter: brightness(0.5); /* Darken image on hover */
+        }
+        .item a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        
+    
+
+
+
+ select{
+    outline:none!important;
+  }
+
+.dark-mode #dropdown {
+  color: #fff; /* Set text color to white */
+}
+  .container {
+    max-width: 50%;
+color: var(--text-color);
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+  }
+.myinputs{
+  margin:20px;
+  text-align: center; 
   
+}
+
+   input[type="text"] {
+      position: relative;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid transparent; /* Make sure there's space for the border */
+      background-clip: padding-box; /* Ensures the background stays inside the border */
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      box-sizing: border-box;
+      color: var(--text-color);
+      background-color: var(--placeholder-bg);
+      outline: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+  textarea {
+    height:100px;
+    padding:10px;
+    overflow:auto;
+   width:93%;
+    margin: 10px auto; /* Center the textarea */
+    border-radius: 5px;
+    border: 1px solid rgba(235,235,235,0.1);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    resize: vertical;
+    display: block;
+    color:var(--text-color);
+    background-color: var(--placeholder-bg);
+    outline:none;
+  }
+
+
+    textarea:hover, input[type="text"]:hover, .user-transaction:hover{
+      animation: borderRotate 2s linear infinite;
+      border-image-source: linear-gradient(90deg, transparent, #ff0000, transparent);
+      border-image-slice: 1;
+    }
+
+    @keyframes borderRotate {
+      0% {
+        border-image-source: linear-gradient(90deg, transparent, #ff009670, transparent);
+        border-image-slice: 1;
+     }
+      25% {
+        border-image-source: linear-gradient(180deg, transparent, #00ff0076, transparent);
+        border-image-slice: 1;
+      }
+      50% {
+        border-image-source: linear-gradient(270deg, transparent, #00a8ff7d, transparent);
+        border-image-slice: 1;
+      }
+      75% {
+        border-image-source: linear-gradient(360deg, transparent, #ffff0082, transparent);
+        border-image-slice: 1;
+      }
+      100% {
+        border-image-source: linear-gradient(90deg, transparent, #ff0000, transparent);
+        border-image-slice: 1;
+      }
+    }
+  #synopsisInput3{
+  height:100px;
+  overflow:auto;
+}
+  #copyBtn, #generateBtn, #copyBtn3, #generateBtn3, #addEpisodeBtn{
+    display: block;
+    margin:15px auto;
+   border-radius:8px;
+   Outline:none;
+   z-index:999;
+  padding: 10px 20px;
+  border: 1px solid rgba(235,235,235,0.1);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   background-color: var(--placeholder-bg);
+    color: green;
+    border: none;
+    cursor: pointer;
+  }
+.removeBtn{
+  display: block;
+   margin:0px auto 10px auto;
+   border-radius:8px;
+   Outline:none;
+   z-index:999;
+  padding: 5px 10px;
+   border: 1px solid rgba(235,235,235,0.1);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   background-color: var(--placeholder-bg);
+    color: green;
+    border: none;
+    cursor: pointer;
+}
+#generateBtn, #generateBtn3{
+  margin-bottom:-30px;
+}
+  #copyBtn3, #copyBtn{
+    position:relative;
+    bottom:-46px;
+    left:120px;
+    padding:5px 10px;
+    
+    
+  }
+
+
+
+  .dark-mode-label,
+  .light-mode-label {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+/* Light mode */
+input:focus {
+  outline-color: var(--theme-color)!important; /* Outline color when input is focused */
+}
+
+/* Dark mode */
+.dark-mode input:focus {
+  outline-color: var(--theme-color)!important; /* Outline color when input is focused in dark mode */
+}
+/* Light mode */
+textarea:focus {
+  outline-color: var(--theme-color)!important; /* Outline color when textarea is focused */
+}
+
+/* Dark mode */
+.dark-mode textarea:focus {
+  outline-color: var(--theme-color)!important; /* Outline color when textarea is focused in dark mode */
+}
+/* Placeholder text color */
+  ::placeholder {
+    opacity:0.7;
+    color: var(--placeholder-color-light); /* Default placeholder color */
+  }
+
+  /* Dark mode placeholder color */
+  body.dark-mode ::placeholder {
+    opacity:0.7;
+    color: var(--placeholder-color-dark); /* Placeholder color in dark mode */
+  }
+  
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  border: 1px solid rgba(235,235,235,0.1);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   background-color: var(--placeholder-bg);
+    color: green;
+  margin-left:20px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  border: 1px solid rgba(235,235,235,0.1);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   background-color: var(--dropdownbg-color);
+    color: green!important;
+  opacity:1;
+  min-width: 160px;
+margin:10px 0 0 20px;
+border-radius: 8px;
+  
+  z-index: 1;
+}
+
+.dropdown-content button {
+  border: 1px solid rgba(235,235,235,0.1);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   background-color: var(--placeholder-bg);
+   color:grey;
+  border:none;
+  font-family: Sans-Serif!important;
+  padding: 6px 10px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border-radius:8px;
+  background: none;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-content button:first-child {
+  display: block;
+}
+.show {
+  display: block;
+}
+
+   
+       
+    .user-container {
+        width: 95%;
+        margin: 20px auto;
+        padding:10px;
+        
+    }
+    .user-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    .user-search-bar {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color) ;
+        border-radius: 4px;
+        font-size: 14px;
+        color:var(--text-color);
+        background-color: transparent;
+    }
+    .user-transaction {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        border: 1px solid #80808022;
+border-radius: 5px;
+        padding: 10px;
+    }
+
+.user-search-bar {
+    outline: none; /* Removes the default outline */
+
+}
+
+.user-search-bar:focus {
+    outline: none; /* Ensures no outline appears when focused */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+  
+}
+    .user-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #e0e0e0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-right: 15px;
+    }
+    .user-details {
+        flex: 1;
+    }
+    .user-item {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .user-date {
+        font-size: 12px;
+        color: #888;
+    }
+    .user-status-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .user-status {
+        font-weight: bold;
+        color: #28a745;
+        margin-bottom: 5px;
+    }
+    .user-status.pending {
+        color: #ff9800;
+    }
+    .user-id {
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+    }
 
 </style>
 </head>
-<body>  
+<body>
+
+
+   
   <header>
 
 
@@ -204,66 +956,613 @@ Transaction</button>
         <div class="user-icon">😜</div>
         <div class="user-details">
             <div class="user-item">Eunwoo</div>
-            <div class="user-date">Lifetime</div>
+            <div class="user-date">Masteroppa</div>
         </div>
         <div class="user-status-container">
             <div class="user-status">Lifetime</div>
-            <div class="user-id">5VHD1UZ0lV</div>
+            <div class="user-id">P299.00</div>
         </div>
     </div>
+    
     <div class="user-transaction">
         <div class="user-icon">😁</div>
         <div class="user-details">
-            <div class="user-item">Khatie</div>
-            <div class="user-date">Lifetime</div>
+            <div class="user-item">Oppasarang</div>
+            <div class="user-date">sarang</div>
         </div>
         <div class="user-status-container">
             <div class="user-status">Lifetime</div>
-            <div class="user-id">iobzBjYzLq</div>
+            <div class="user-id">P299.00</div>
         </div>
     </div>
     <div class="user-transaction">
-        <div class="user-icon">🥲</div>
+        <div class="user-icon">😍</div>
         <div class="user-details">
-            <div class="user-item">Ghurly</div>
-            <div class="user-date">Lifetime</div>
+            <div class="user-item">geolliyaah</div>
+            <div class="user-date">143saranghae</div>
         </div>
         <div class="user-status-container">
             <div class="user-status">Lifetime</div>
-            <div class="user-id">uiOg4seiTI</div>
+            <div class="user-id">P299.00</div>
         </div>
     </div>
     <div class="user-transaction">
         <div class="user-icon">🤑</div>
         <div class="user-details">
-            <div class="user-item">Viva</div>
-            <div class="user-date">Lifetime</div>
+            <div class="user-item">User1</div>
+            <div class="user-date">iLAmmJ8Qw9</div>
         </div>
         <div class="user-status-container">
-            <div class="user-status">Lifetime</div>
-            <div class="user-id">yfT9ZAPBdg</div>
+            <div class="user-status pending">Trial</div>
+            <div class="user-id">Pending</div>
         </div>
     </div>
     <div class="user-transaction">
-        <div class="user-icon">🤡</div>
+        <div class="user-icon">🤗</div>
         <div class="user-details">
-            <div class="user-item">Alexa</div>
-            <div class="user-date">Lifetime</div>
+            <div class="user-item">User2</div>
+            <div class="user-date">VTPZEJ4N19</div>
         </div>
         <div class="user-status-container">
-            <div class="user-status">Lifetime</div>
-            <div class="user-id">VTPZEJ4N19</div>
+            <div class="user-status pending">Trial</div>
+            <div class="user-id">Pending</div>
         </div>
     </div>
-
+    
+    <div class="user-transaction">
+        <div class="user-icon">😘</div>
+        <div class="user-details">
+            <div class="user-item">User3</div>
+            <div class="user-date">wSJSvdPPoh</div>
+        </div>
+        <div class="user-status-container">
+            <div class="user-status pending">Trial</div>
+            <div class="user-id">Pending</div>
+        </div>
+    </div>
+    
+    <div class="user-transaction">
+        <div class="user-icon">😇</div>
+        <div class="user-details">
+            <div class="user-item">User4</div>
+            <div class="user-date">YV2XrgNqIa</div>
+        </div>
+        <div class="user-status-container">
+            <div class="user-status pending">Trial</div>
+            <div class="user-id">Pending</div>
+        </div>
+    </div>
+    
+        <div class="user-transaction">
+        <div class="user-icon">😉</div>
+        <div class="user-details">
+            <div class="user-item">User5</div>
+            <div class="user-date">lTiRI45gJX</div>
+        </div>
+        <div class="user-status-container">
+            <div class="user-status pending">Trial</div>
+            <div class="user-id">Pending</div>
+        </div>
+    </div>
 </div>
     </section>
   </div>
 
 
 
-<script src="script.js"></script>
+<script>
+
+// JavaScript
+    function showContent(page) {
+      // Hide all content divs
+      var contentDivs = document.querySelectorAll('.content');
+      contentDivs.forEach(function(div) {
+        div.style.display = 'none';
+      });
+
+
+// Deactivate all buttons
+      var menuButtons = document.querySelectorAll('.bottom-menu button');
+      menuButtons.forEach(function(button) {
+        button.classList.remove('active');
+      });
+
+      // Show the selected content div
+      document.getElementById(page).style.display = 'block';
+
+      // Activate the clicked button
+      event.currentTarget.classList.add('active');
+    }
+// Add event listener for the new Series Code button
+var seriesCodeBtn = document.querySelector('.bottom-menu button:last-child');
+seriesCodeBtn.addEventListener('click', function() {
+  showContent('links');
+});
+
+// Function to show content based on selected option
+function showContent(page) {
+  var allContents = document.querySelectorAll('.content');
+  allContents.forEach(function(content) {
+    content.style.display = 'none';
+  });
+  document.getElementById(page).style.display = 'block';
+  updateActiveButton(page); // Update active button
+}
+// Function to show content based on selected option
+function showContent(page) {
+  console.log('showContent called with page:', page); // Debugging statement
+  var allContents = document.querySelectorAll('.content');
+  allContents.forEach(function(content) {
+    content.style.display = 'none';
+  });
+  document.getElementById(page).style.display = 'block';
+  updateActiveButton(page); // Update active button
+}
+
+// Function to update active button style
+function updateActiveButton(selectedPage) {
+  var allButtons = document.querySelectorAll('.bottom-menu button');
+  allButtons.forEach(function(button) {
+    if (button.getAttribute('onclick').includes(selectedPage)) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+
+ 
+    const menuButton = document.getElementById('menuButton');
+    const overlay = document.getElementById('overlay');
+
+    // Open sidebar on menu button click
+    menuButton.addEventListener('click', () => {
+      overlay.classList.add('active');
+    });
+
+    // Close sidebar when clicking outside the sidebar
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) {
+        overlay.classList.remove('active');
+      }
+    });
   
+ 
+    
+const lightIcon = document.getElementById("dark-icon");
+const darkIcon = document.getElementById("light-icon");
+// Check if dark mode is preferred
+const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+let darkMode = darkModeMediaQuery.matches;
+
+// Set dark-mode class on body if darkMode is true and pick icon
+if (darkMode) {
+  document.body.classList.add("dark-mode");
+  darkIcon.style.display = "none";
+} else {
+  lightIcon.style.display = "none";
+}
+// Toggle dark mode on button click
+function toggleDarkMode() {
+  // Toggle darkMode variable
+  darkMode = !darkMode;
+
+  // Toggle dark-mode class on body
+  document.body.classList.toggle("dark-mode");
+
+  // Toggle light and dark icons
+  if (darkMode) {
+    lightIcon.style.display = "block";
+    darkIcon.style.display = "none";
+  } else {
+    lightIcon.style.display = "none";
+    darkIcon.style.display = "block";
+  }
+}
+
+
+// JavaScript for Series Generator
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('generateBtn').addEventListener('click', function() {
+    var thumbnailLink = document.getElementById('thumbnailInput').value;
+    var iframeLink = document.getElementById('iframeInput').value;
+    var synopsis = document.getElementById('synopsisInput').value;
+    var casts = document.getElementById('castsInput').value;
+    var director = document.getElementById('directorInput').value;
+    var release = document.getElementById('releaseInput').value;
+    var country = document.getElementById('countryInput').value;
+    
+    var tableCode = '<table class="blueTable">\n<tbody>\n';
+    tableCode += '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n';
+    tableCode += '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n';
+    tableCode += '<tr>\n<td>Release:</td>\n<td>' + release + '</td>\n</tr>\n';
+    tableCode += '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n';
+    tableCode += '</tbody>\n</table>';
+    
+ var generatedCode = '<html>\n' +
+    '<img src="' + thumbnailLink + '"/>\n' +
+    '<iframe id="fullscreen-Button" class="lazyload" data-src="' + iframeLink + '" src="' + iframeLink + '" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
+    '<p>' + synopsis + '</p>\n' +
+    tableCode + '\n\n' +
+    '</html>'; // Add line break and spacing here
+
+    document.getElementById('codeOutput').value = generatedCode;
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function() {
+    var codeOutput = document.getElementById('codeOutput');
+    codeOutput.select();
+    document.execCommand('copy');
+    alert('Code copied to clipboard!');
+  });
+});
+
+ var iframeCode ='<iframe class="lazyload" data-src="/" src="/" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>';
+ 
+document.getElementById('addEpisodeBtn').addEventListener('click', function() {
+    var episodesDiv = document.getElementById('episodes');
+    var episodeDiv = document.createElement('div');
+    episodeDiv.classList.add('episode');
+    
+    var episodeCount = document.querySelectorAll('.episode').length + 1;
+    
+    var episodeInput = document.createElement('input');
+    episodeInput.type = 'text';
+    episodeInput.classList.add('episodeInput');
+    episodeInput.placeholder = 'Enter Episode ' + episodeCount;
+    
+    var removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.classList.add('removeBtn');
+    
+    removeBtn.addEventListener('click', function() {
+        episodesDiv.removeChild(episodeDiv);
+    });
+    
+    episodeDiv.appendChild(episodeInput);
+    episodeDiv.appendChild(removeBtn);
+    
+    episodesDiv.appendChild(episodeDiv);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Add event listener for the Generate Code button
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        // Retrieve input values
+        var thumbnailLink = document.getElementById('thumbnailInput').value;
+        var iframeLink = document.getElementById('iframeInput').value;
+        var synopsis = document.getElementById('synopsisInput').value;
+        var casts = document.getElementById('castsInput').value;
+        var director = document.getElementById('directorInput').value;
+        var release = document.getElementById('releaseInput').value;
+        var country = document.getElementById('countryInput').value;
+
+
+var generatedCode = '<html>\n' +
+    '<img src="' + thumbnailLink + '"/>\n' +
+    '<iframe class="lazyload" id="fullscreen-Button" data-src="' + iframeLink + '" src="' + iframeLink + '" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
+    '<p>' + synopsis + '</p>\n' +
+    '<table class="blueTable">\n' +
+    '<tbody>\n' +
+    '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n' +
+    '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n' +
+    '<tr>\n<td>Release:</td>\n<td>' + release + '</td>\n</tr>\n' +
+    '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n' +
+    '</tbody>\n' +
+    '</table>\n' +
+    '<a class="watchbtn" href="javascript:void(0);" id="fullscreenButton">Watch Now</a>\n' +
+    '</html>';
+
+
+
+        // Display generated code in the textarea
+        document.getElementById('codeOutput').value = generatedCode;
+    });
+
+    // Add event listener for the Copy button
+    document.getElementById('copyBtn').addEventListener('click', function() {
+        var codeOutput = document.getElementById('codeOutput');
+        codeOutput.select();
+        document.execCommand('copy');
+        alert('Code copied to clipboard!');
+    });
+});
+
+document.getElementById('generateBtn3').addEventListener('click', function() {
+    var seriesThumbnail = document.getElementById('seriesThumbnailInput3').value;
+    var casts = document.getElementById('castsInput3').value;
+    var director = document.getElementById('directorInput3').value;
+    var releaseDate = document.getElementById('releaseInput3').value;
+    var country = document.getElementById('countryInput3').value;
+    var synopsis = document.getElementById('synopsisInput3').value;
+    var episodes = document.querySelectorAll('.episodeInput');
+    
+    var episodeList = '';
+    episodes.forEach(function(episode, index) {
+        episodeList += '<a href="" class="epi" data-src="' + episode.value + '">' + (index + 1) + '</a>';
+    });
+    
+    var tableCode = '<table class="blueTable">\n<tbody>\n';
+    tableCode += '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n';
+    tableCode += '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n';
+    tableCode += '<tr>\n<td>Release Date:</td>\n<td>' + releaseDate + '</td>\n</tr>\n';
+    tableCode += '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n';
+    tableCode += '</tbody>\n</table>';
+    
+var generatedCode = `<html>
+${iframeCode}
+<img src="${seriesThumbnail}"/>
+<p>${synopsis}</p>
+<table class="blueTable">
+<tbody>
+<tr>
+<td>Casts:</td> <td>${casts}</td>
+</tr>
+<tr>
+<td>Director:</td> <td>${director}</td>
+</tr>
+<tr>
+<td>Release Date:</td> <td>${releaseDate}</td>
+</tr>
+<tr>
+<td>Country:</td> <td>${country}</td>
+</tr>
+</tbody>
+</table>
+<div id="episodeList">${episodeList}</div>
+</html>`;
+
+   
+    document.getElementById('codeOutput3').value = generatedCode;
+});
+
+document.getElementById('copyBtn3').addEventListener('click', function() {
+    var codeOutput = document.getElementById('codeOutput3');
+    codeOutput.select();
+    document.execCommand('copy');
+    alert('Code copied to clipboard!');
+});
+
+// Function to open a specific tab
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
+function toggleDropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function selectOption(option) {
+  document.getElementById("myDropdown").classList.remove("show");
+  if (option === "seriesCode") {
+    document.getElementById("seriesCode").style.display = "block";
+    document.getElementById("movieCode").style.display = "none";
+    document.getElementById("dropdownTitle").innerHTML = 'Series Code <i class="fas fa-caret-down"></i>';
+    document.getElementById("postOption").style.display = "none";
+    document.getElementById("movieOption").style.display = "block";
+  } else if (option === "movieCode") {
+    document.getElementById("seriesCode").style.display = "none";
+    document.getElementById("movieCode").style.display = "block";
+    document.getElementById("dropdownTitle").innerHTML = 'Movie Code <i class="fas fa-caret-down"></i>';
+    document.getElementById("movieOption").style.display = "none";
+    document.getElementById("postOption").style.display = "block";
+  }
+}
+// Set default content to "Post Code"
+selectOption("seriesCode");
+
+
+//image Carousel
+(() => {
+  const images_list = [
+    {
+      "url": "https://www.html-code-generator.com/images/slider/1.png",
+      "alt": "",
+      "name": "image 1",
+      "link": ""
+    },
+    {
+      "url": "https://www.html-code-generator.com/images/slider/2.png",
+      "alt": "",
+      "name": "image 2",
+      "link": ""
+    },
+    {
+      "url": "https://www.html-code-generator.com/images/slider/3.png",
+      "alt": "",
+      "name": "image 3",
+      "link": ""
+    },
+    {
+      "url": "https://www.html-code-generator.com/images/slider/4.png",
+      "alt": "",
+      "name": "image 4",
+      "link": ""
+    },
+    {
+      "url": "https://www.html-code-generator.com/images/slider/5.png",
+      "alt": "",
+      "name": "image 5",
+      "link": ""
+    }
+  ];
+
+  let slider_id = document.querySelector("#hcg-slider-1");
+
+  let dots_div = "";
+  let images_div = "";
+  for (let i = 0; i < images_list.length; i++) {
+    let href = (images_list[i].link == "" ? "" : ' href="' + images_list[i].link + '"');
+    images_div += '<a' + href + ' class="hcg-slides animated"' + (i === 0 ? ' style="display:flex"' : '') + '>' +
+        '<img src="' + images_list[i].url + '" alt="' + images_list[i].name + '">' +
+        '</a>';
+    dots_div += '<a href="#" class="hcg-slide-dot' + (i === 0 ? ' dot-active' : '') + '" data-id="' + i + '"></a>';
+  }
+  slider_id.querySelector(".hcg-slider-body").innerHTML = images_div;
+  slider_id.querySelector(".hcg-slide-dot-control").innerHTML = dots_div;
+
+  let slide_index = 0;
+
+  const images = slider_id.querySelectorAll(".hcg-slides");
+  const dots = slider_id.querySelectorAll(".hcg-slide-dot");
+  const showSlides = () => {
+    if (slide_index > images.length - 1) {
+      slide_index = 0;
+    }
+    if (slide_index < 0) {
+      slide_index = images.length - 1;
+    }
+    for (let i = 0; i < images.length; i++) {
+      images[i].style.display = "none";
+      dots[i].classList.remove("dot-active");
+      if (i == slide_index) {
+        images[i].style.display = "flex";
+        dots[i].classList.add("dot-active");
+      }
+    }
+  };
+
+  const dot_click = event => {
+    event.preventDefault();
+    slide_index = event.target.dataset.id;
+    showSlides();
+  };
+
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].addEventListener("click", dot_click, false);
+  }
+  setInterval(() => {
+    slide_index++;
+    showSlides();
+  }, 2000);
+})();
+        
+// Function to toggle the dashboard sidebar
+function toggleDashboardSidebar() {
+  var sidebar = document.getElementById("dashboardSidebar");
+  var contentAreas = document.querySelectorAll(".content");
+
+  if (sidebar.style.left === "-280px") {
+    sidebar.style.left = "0"; // Slide into view
+    contentAreas.forEach(function(content) {
+      content.classList.add("blur-effect"); // Add blur effect to all content areas
+    });
+  } else {
+    sidebar.style.left = "-280px"; // Slide out of view
+    contentAreas.forEach(function(content) {
+      content.classList.remove("blur-effect"); // Remove blur effect from all content areas
+    });
+  }
+}
+
+// Event listener for the menu button click
+document.getElementById("menuButton").addEventListener("click", toggleDashboardSidebar);
+
+// Function to close sidebar when clicking outside of it
+window.onclick = function(event) {
+  var sidebar = document.getElementById("dashboardSidebar");
+  var menuButton = document.getElementById("menuButton");
+  var contentAreas = document.querySelectorAll(".content");
+
+  if (event.target !== sidebar && event.target !== menuButton) {
+    sidebar.style.left = "-280px"; // Slide out of view
+    contentAreas.forEach(function(content) {
+      content.classList.remove("blur-effect"); // Remove blur effect from all content areas
+    });
+  }
+}
+//video sliding
+const videos = document.querySelectorAll('.sliding-video iframe');
+
+    videos.forEach(video => {
+        video.addEventListener('click', () => {
+            // Stop all videos
+            videos.forEach(v => {
+                if (v !== video) {
+                    v.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            });
+        });
+    });
+
+ function toggleGrids() {
+        const grids = document.querySelector('.grids');
+        grids.classList.toggle('grids-2');
+        grids.classList.toggle('grids-3');
+    }
+ 
+const searchIcon = document.getElementById("searchIcon");
+const searchBar = document.getElementById("searchBar");
+
+searchIcon.addEventListener("click", function(event) {
+  event.stopPropagation(); // Prevent click event from propagating to document
+  searchBar.classList.toggle("active");
+});
+
+document.getElementById("searchInput").addEventListener("input", function() {
+  const searchValue = this.value.toLowerCase();
+  const gridItems = document.querySelectorAll(".grid");
+
+  gridItems.forEach(function(item) {
+    const title = item.querySelector(".title").textContent.toLowerCase();
+    const subtitle = item.querySelector(".subtitle").textContent.toLowerCase();
+    const isVisible = title.includes(searchValue) || subtitle.includes(searchValue);
+
+    item.style.display = isVisible ? "block" : "none";
+  });
+});
+
+// Add event listener to the document to collapse search bar when clicked outside
+document.addEventListener("click", function(event) {
+  if (!searchBar.contains(event.target)) {
+    searchBar.classList.remove("active");
+  }
+});
+
+
+// Add an event listener to detect touch events
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var startY;
+var pullDown = false;
+
+function handleTouchStart(event) {
+  // Record the starting position of the touch event
+  startY = event.touches[0].clientY;
+  pullDown = false;
+}
+
+function handleTouchMove(event) {
+  if (document.body.scrollTop === 0) {
+    pullDown = true;
+    // Check if the user is pulling down
+    var currentY = event.touches[0].clientY;
+    var diff = currentY - startY;
+    
+    if (diff > 50) { // Set a threshold for the pull-down distance
+      // Show the pull-down indicator and trigger the reload action
+      document.getElementById("pullDownIndicator").style.display = "block";
+      // Reload your content or perform any necessary action
+      // For example, window.location.reload() to reload the page
+    }
+  }
+}
+
+
+</script>
+
 <script>
     const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.blogger.com%2Ffeeds%2F3434317895581666633%2Fposts%2Fdefault&api_key=f1wz56jkpxrjxaruc4pum1xymrkfa8fxodu8i9xh&count=99';
 
@@ -402,5 +1701,77 @@ Transaction</button>
 
     fetchRSSData();
 </script>
+<script>
+    function filterTransactions() {
+        const searchValue = document.getElementById('user-search').value.toLowerCase();
+        const transactions = document.getElementsByClassName('user-transaction');
+
+        for (const transaction of transactions) {
+            const transactionText = transaction.innerText.toLowerCase();
+
+            if (transactionText.includes(searchValue)) {
+                transaction.style.display = 'flex';
+            } else {
+                transaction.style.display = 'none';
+            }
+        }
+    }
+</script>
+  <script>
+       function updateDateTime() {
+      const dateElement = document.getElementById("date");
+      const timeElement = document.getElementById("time");
+      const now = new Date();
+
+      // Format the date
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      const dateString = now.toLocaleDateString('en-US', options);
+
+      // Format the time in 12-hour format with AM/PM
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+
+      // Update the date and time
+      dateElement.textContent = `Date: ${dateString}`;
+      timeElement.textContent = `Time: ${hours}:${minutes} ${ampm}`;
+    }
+
+    // Update the date and time every minute
+    setInterval(updateDateTime, 60000);
+
+    // Initial call to display the date and time immediately
+   updateDateTime();H
+  </script>
+  <script>
+    // Function to generate a random key
+    function keyGenerate() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let randomKey = '';
+      for (let i = 0; i < 10; i++) {
+        randomKey += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      document.getElementById('key-display').textContent = randomKey;
+    }
+
+    // Function to copy the generated key to the clipboard
+    function keyCopy() {
+      const keyElement = document.getElementById('key-display');
+      const keyText = keyElement.textContent;
+
+      if (keyText !== 'Click the button to generate a key') {
+        navigator.clipboard.writeText(keyText).then(() => {
+          alert('Key copied to clipboard!');
+        }).catch(err => {
+          console.error('Failed to copy key: ', err);
+        });
+      } else {
+        alert('Please generate a key first!');
+      }
+    }
+  </script>
 </body>
 </html>
