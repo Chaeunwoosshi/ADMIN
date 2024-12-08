@@ -261,7 +261,146 @@ Transaction</button>
   </div>
 
 
+
 <script src="script.js"></script>
   
+<script>
+    const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.blogger.com%2Ffeeds%2F3434317895581666633%2Fposts%2Fdefault&api_key=f1wz56jkpxrjxaruc4pum1xymrkfa8fxodu8i9xh&count=99';
+
+    async function fetchRSSData() {
+        try {
+            const response = await fetch(rssUrl);
+            const data = await response.json();
+            displayRandomItems(data.items);
+            const orderedCategories = ['Short Drama', 'Series', 'Movie']; // Order categories here
+            displayCategories(data.items, orderedCategories);
+        } catch (error) {
+            console.error('Error fetching RSS feed:', error);
+        }
+    }
+
+    function extractImageFromContent(content) {
+        const imgTag = content.match(/<img.*?src="(.*?)"/);
+        return imgTag ? imgTag[1] : 'https://via.placeholder.com/100x150'; // Fallback image with appropriate size
+    }
+
+    function displayRandomItems(items) {
+        const randomSlider = document.getElementById('random-slider');
+        const indicatorsContainer = document.getElementById('carousel-indicators');
+        const shuffledItems = items.sort(() => 0.5 - Math.random()); // Shuffle items
+        const randomItems = shuffledItems.slice(0, 5); // Get 5 random items
+
+        randomItems.forEach((item, index) => {
+            const sliderItem = document.createElement('div');
+            sliderItem.className = 'carousel-item';
+
+            const img = document.createElement('img');
+            img.src = extractImageFromContent(item.content || item.description);
+            sliderItem.appendChild(img);
+
+            const title = document.createElement('div');
+            title.className = 'carousel-title';
+            title.textContent = item.title;
+            sliderItem.appendChild(title);
+
+            randomSlider.appendChild(sliderItem);
+
+            // Create indicators
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator' + (index === 0 ? ' active' : '');
+            indicator.dataset.index = index; // Set the index for the indicator
+            indicatorsContainer.appendChild(indicator);
+        });
+
+        // Automatic slide functionality
+        let currentIndex = 0;
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % randomItems.length;
+            updateCarousel(currentIndex);
+        }, 3000); // Change slide every 3 seconds
+    }
+
+    function updateCarousel(index) {
+        const carouselTrack = document.getElementById('random-slider');
+        const indicators = document.querySelectorAll('.indicator');
+
+        // Move carousel to the current index
+        const offset = index * 100; // 100% for one item
+        carouselTrack.style.transform = `translateX(-${offset}%)`;
+
+        // Update indicators
+        indicators.forEach((indicator, idx) => {
+            indicator.classList.toggle('active', idx === index);
+        });
+    }
+
+    function displayCategories(items, orderedCategories) {
+        const container = document.getElementById('content-container');
+        const categories = {};
+
+        items.forEach(item => {
+            item.categories.forEach(category => {
+                if (!categories[category]) {
+                    categories[category] = [];
+                }
+                categories[category].push(item);
+            });
+        });
+
+        orderedCategories.forEach(category => {
+            if (categories[category]) {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section';
+
+                const categoryTitle = document.createElement('div');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = category;
+                categorySection.appendChild(categoryTitle);
+
+                const slider = document.createElement('div');
+                slider.className = 'horizontal-slider';
+
+                categories[category].forEach(item => {
+                    const sliderItem = document.createElement('div');
+                    sliderItem.className = 'item';
+
+                    const link = document.createElement('a');
+                    link.href = item.link;
+
+                    const img = document.createElement('img');
+                    img.src = extractImageFromContent(item.content || item.description);
+                    link.appendChild(img);
+
+                    const playButton = document.createElement('div');
+                    playButton.className = 'play-button';
+                    link.appendChild(playButton);
+
+                    const title = document.createElement('div');
+                    title.className = 'item-title';
+                    title.textContent = item.title;
+                    link.appendChild(title);
+
+                    sliderItem.appendChild(link);
+                    slider.appendChild(sliderItem);
+                });
+
+                categorySection.appendChild(slider);
+                container.appendChild(categorySection);
+            }
+        });
+    }
+
+    // Change header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) { // Change 100 to the desired scroll height
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    fetchRSSData();
+</script>
 </body>
 </html>
