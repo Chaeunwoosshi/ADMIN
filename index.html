@@ -378,53 +378,71 @@ font-size: 20px;
         .indicator.active {
             background-color: #1df147; /* Active indicator color */
         }
-        .category-section {
-            margin-bottom: 20px;
-            
-        }
-        .category-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-            padding-left: 5px;
-        }
-        .horizontal-slider {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            margin-bottom: 20px;
-        }
-        .item {
-            flex: 0 0 auto;
-            width: 100px; /* Ensures three items fit on the screen */
-            margin-bottom:5px;
-            border:solid 1px var(--border-color);
-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      color:var(---text-color) ;
-            margin-right: 8px;
-            scroll-snap-align: start;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative; /* Required for overlay */
-            transition: transform 0.3s ease-in-out; /* Zoom effect on hover */
-        }
-        .item img {
-            width: 100%;
-            height: 150px; /* Fixed height */
-            object-fit: cover; /* Ensures image fills the space while maintaining aspect ratio */
-            display: block;
-            border-bottom: 1px solid #333;
-            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Smooth zoom and darkening effect */
-        }
-        .item-title {
-            font-size: 12px;
-            padding: 6px;
-            text-align: center;
-           color:var(---text-color) ;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.category-section {
+    margin-bottom: 20px;
+}
+
+.category-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+/* Change the horizontal-slider to a grid layout */
+.horizontal-slider {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+    gap: 10px; /* Space between items */
+    margin-bottom: 20px;
+    padding: 0 10px; /* Optional padding for spacing */
+}
+
+/* Item styling for grid layout */
+.item {
+    width: 100%; /* Ensures each item fills its grid cell */
+    border: solid 1px var(--border-color);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    color: var(---text-color);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Image inside the item */
+.item img {
+    width: 100%;
+    height: 150px; /* Fixed height */
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #333;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+/* Title styling */
+.item-title {
+    font-size: 12px;
+    padding: 6px;
+    text-align: center;
+    color: var(---text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Mobile (up to 768px): 3 columns per row */
+@media (max-width: 768px) {
+    .horizontal-slider {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns per row on mobile */
+    }
+}
+
+/* For even smaller screens (up to 480px), you can adjust to 2 or 1 column if necessary */
+@media (max-width: 480px) {
+    .horizontal-slider {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns per row on mobile */
+    }
+}
         .play-button {
             position: absolute;
             top: 45%;
