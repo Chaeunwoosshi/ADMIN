@@ -727,9 +727,45 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     .user-container {
         width: 95%;
         margin: 20px auto;
-        padding:10px;
+        padding:0px;
         
     }
+    
+
+    /* Tab container */
+    .tsn-tab-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 40px;
+    }
+
+    .tsn-tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px 20px;
+      margin-bottom:10px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .tsn-tab.active {
+      border-bottom: 2px solid #14a23b;
+     
+    }
+
+    /* Tab content */
+    .tsn-tab-content {
+      display: none;
+    }
+
+    .tsn-tab-content.active {
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
     .user-title {
         font-size: 18px;
         font-weight: bold;
@@ -738,6 +774,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     .user-search-bar {
         width: 100%;
         padding: 10px;
+        margin-top:20px;
         margin-bottom: 20px;
         border: 1px solid var(--border-color) ;
         border-radius: 4px;
@@ -1137,8 +1174,15 @@ Subscription</button>
  <section id="users">
 <div class="user-container">
     <input type="text" id="user-search" class="user-search-bar" placeholder="Search transactions..." onkeyup="filterTransactions()">
-    <div class="user-title">Transaction</div>
 
+  <div class="tsn-tab-container">
+    <div class="tsn-tab active" data-tab="transaction">Transaction</div>
+    <div class="tsn-tab" data-tab="trial">Trial</div>
+  </div>
+
+  <div class="tsn-tab-content active" id="transaction">
+   
+    
     <div class="user-transaction">
         <div class="user-icon">😜</div>
         <div class="user-details">
@@ -1184,7 +1228,11 @@ Subscription</button>
             <div class="user-id">Pending</div>
         </div>
     </div>
-    <div class="user-transaction">
+ 
+    
+  </div>
+  <div class="tsn-tab-content" id="trial">
+   <div class="user-transaction">
         <div class="user-icon">🤗</div>
         <div class="user-details">
             <div class="user-item">User2</div>
@@ -1231,6 +1279,10 @@ Subscription</button>
             <div class="user-id">Pending</div>
         </div>
     </div>
+  </div>
+
+
+    
 </div>
     </section>
   </div>
@@ -1978,6 +2030,26 @@ function handleTouchMove(event) {
         }
     }
 </script>
+
+  <script>
+    // JavaScript for tab functionality
+    const tabs = document.querySelectorAll('.tsn-tab');
+    const contents = document.querySelectorAll('.tsn-tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and content
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        // Add active class to the clicked tab and corresponding content
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-tab');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
+  
   <script>
        function updateDateTime() {
       const dateElement = document.getElementById("date");
