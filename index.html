@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <title>ABEFILM ADMIN</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
@@ -346,6 +346,23 @@ font-size: 20px;
             height: 150px; /* Fixed height for images */
             position: relative;
         }
+        
+/* Hide the scrollbar */
+    scrollbar-width: none; /* For Firefox */
+}
+
+.carousel-item::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+/* Hide the scrollbar */
+    scrollbar-width: none; /* For Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+
+
         .carousel-item img {
             width: 100%;
             height: 100%;
@@ -378,7 +395,8 @@ font-size: 20px;
         .indicator.active {
             background-color: #1df147; /* Active indicator color */
         }
-.category-section {
+   
+   .category-section {
     margin-bottom: 20px;
 }
 
@@ -443,6 +461,7 @@ font-size: 20px;
         grid-template-columns: repeat(3, 1fr); /* 3 columns per row on mobile */
     }
 }
+
         .play-button {
             position: absolute;
             top: 45%;
@@ -786,6 +805,153 @@ border-radius: 5px;
         margin-top: 5px;
     }
 
+
+#others{
+  padding:0;
+  margin:0;
+}
+
+.other-card{
+  margin-left:-12px;
+  padding:50px 0px 0px 0px;
+}
+.card {
+  margin: 0px 5px 0 5px;
+  width: 100%;
+  overflow: hidden;
+border: 1px solid #80808022;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 5px 15px;
+  color: #333;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #555;
+}
+
+.copy-btn {
+  padding: 3px 10px;
+  margin: 10px 0 10px 0;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.copy-btn:hover {
+  background-color: #45a049;
+}
+
+.copy-btn i {
+  margin-right: 5px;
+}
+.other-card h2{
+  margin-left:20px;
+  font-size:20px;
+  color:var(--text-color);
+}
+ .pricing-container {
+      display: flex;
+      margin-left:30px;
+      margin-top:-40px;
+      overflow-x: auto;
+      max-width: 100%;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      font-size:16px;
+      margin-bottom:60px;
+    }
+
+ .pricing-container {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.pricing-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+    .pricing-card {
+      border-radius: 12px;
+      background-color:#3cc8431f;
+      padding: 5px;
+      width: 300px;
+      flex-shrink: 0;
+      text-align: center;
+      scroll-snap-align: start;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .week{
+      background-color:#1dcedb1d;
+      color:var(--text-color);
+    }
+    .plan-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .plan-features {
+      list-style-type: none;
+      padding:5px;
+      margin-bottom: 0px;
+      font-size: 14px;
+      text-align:left!important;
+      color:var(--text-color);
+    }
+
+    .plan-features li {
+      margin-bottom: 8px;
+    }
+
+    .plan-details {
+      text-align:left!important;
+      display: block;
+      padding: 10px;
+      margin-top: 0px;
+      border-radius: 8px;
+      font-size: 14px;
+      color:var(--text-color);
+    }
+
+
+    /* Specific styles for VIP plan */
+    .vip {
+      background-color:#f185402c;
+     color:var(--text-color);
+    }
+
+    .vip .price {
+      color: #f0c14b;
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 480px) {
+      .pricing-card {
+        width: 70%;
+      }
+
+      .pricing-container {
+        gap: 15px;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -874,7 +1040,10 @@ border-radius: 5px;
   <button onclick="showContent('links')">
 <i class="fas fa-coins"></i>
 Transaction</button>
- 
+
+  <button onclick="showContent('others')">
+<i class="fa-regular fa-address-card"></i>
+Subscription</button>
  <!-- New button -->
 </div>
 <div class="content" id="home">
@@ -1065,6 +1234,80 @@ Transaction</button>
 </div>
     </section>
   </div>
+ <div class="content" id="others" style="display: none;">
+     
+<div class="other-card">
+   <div class="card">
+    <!-- Image -->
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYKtWSnuXpJK1G4IbETqImz9rze7wUhnfV4jWRUkdxA5j-tVyztdu3YVuu3EuaP2HB_1pT_dKO6BduvWOTnKI1bOtp8l6OSHFteJB2EIZRY4zl12rFHmOyfPBjx70D3-3dsY-gaORgKc7IWfWKVJlnI5-uyJ2Bwirx1AQPECVfPeV0xAaA9KpvD-I6PYNz/s2436/1000109601.jpg" alt="Image">
+
+    <!-- Description -->
+    <div class="card-content">
+      <p id="description">Account: AR**L M.</p>
+      <p id="description">Number: 09074644272</p>
+      <button class="copy-btn" onclick="copyDescription()">
+        <i class="fa-solid fa-copy"></i> Copy
+      </button>
+    </div>
+  </div>
+  <h2>Subscription</h2>
+  <div class="other-card">
+  <div class="pricing-container">
+    <!-- 1 Day Plan -->
+    <div class="pricing-card">
+      <h3 class="plan-title">💵 1 Day: 50 pesos (basic)</h3>
+      <ul class="plan-features">
+        <li>✅ Unlimited access for 1 day</li>
+        <li>✅ Easy access to website and app</li>
+      </ul>
+      <div class="plan-details">
+        <p>Enjoy unlimited access for one day!</p>
+      </div>
+    </div>
+
+    <!-- 1 Week Plan -->
+    <div class="pricing-card week">
+      <h3 class="plan-title">💵 1 Week: 150 pesos (basic)</h3>
+      <ul class="plan-features">
+        <li>✅ Unlimited access for 1 week</li>
+        <li>✅ Easy access to website and app</li>
+        <li>✅ Can request (if available)</li>
+      </ul>
+      <div class="plan-details">
+        <p>Enjoy unlimited access for 7 days with request options!</p>
+      </div>
+    </div>
+
+    <!-- Lifetime Plan -->
+    <div class="pricing-card vip">
+      <h3 class="plan-title">💵 Lifetime: 299 pesos (VIP)</h3>
+      <ul class="plan-features">
+        <li>✅ Lifetime access to all</li>
+        <li>✅ Easy access to website and app</li>
+        <li>✅ Priority requests (if available)</li>
+      </ul>
+      
+      <div class="plan-details">
+        <p>Lifetime access with priority requests. Get the VIP experience!</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+  <script>
+    function copyDescription() {
+  const descriptionText = "Account: AR**L M.\nNumber: 09074644272"; // Combining both account and number
+
+  // Copy the text to clipboard
+  navigator.clipboard.writeText(descriptionText).then(() => {
+    alert('Description copied to clipboard!');
+  }).catch(err => {
+    alert('Failed to copy: ' + err);
+  });
+}
+  </script>
+  
+  </div>
 
 
 
@@ -1094,7 +1337,7 @@ Transaction</button>
 // Add event listener for the new Series Code button
 var seriesCodeBtn = document.querySelector('.bottom-menu button:last-child');
 seriesCodeBtn.addEventListener('click', function() {
-  showContent('links');
+  showContent('others');
 });
 
 // Function to show content based on selected option
@@ -1791,5 +2034,6 @@ function handleTouchMove(event) {
       }
     }
   </script>
+
 </body>
 </html>
