@@ -13,6 +13,8 @@
 <script src="https://kit.fontawesome.com/8ca23df693.js" crossorigin="anonymous"></script>
  <script type="text/javascript" src="js/modernizr.custom.79639.js"></script> 		
  <noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
 <style>
 
     /* CSS styles */
@@ -554,7 +556,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
 
 
-    textarea:hover, input[type="text"]:hover, .user-transaction:hover{
+  .order-input:hover, textarea:hover, input[type="text"]:hover, .user-transaction:hover{
       animation: borderRotate 2s linear infinite;
       border-image-source: linear-gradient(90deg, transparent, #ff0000, transparent);
       border-image-slice: 1;
@@ -867,6 +869,7 @@ border: 1px solid #80808022;
 .card-content {
   padding: 5px 15px;
   color: var(--text-color);
+  
 }
 
 .card-content p {
@@ -894,100 +897,64 @@ border: 1px solid #80808022;
 .copy-btn i {
   margin-right: 5px;
 }
+
 .other-card h2{
+  margin-top:30px;
   margin-left:20px;
   font-size:20px;
   color:var(--text-color);
 }
- .pricing-container {
-      display: flex;
-      margin-left:30px;
-      margin-top:-40px;
-      overflow-x: auto;
-      max-width: 100%;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      font-size:16px;
-      margin-bottom:60px;
+
+    .order-container {
+      max-width: 600px;
+      width:88%;
+      margin: -60px 15px 50px 15px;
+      padding: 20px;
+      
     }
-
- .pricing-container {
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
-}
-
-.pricing-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
-}
-
-    .pricing-card {
-      border-radius: 12px;
-      background-color:#3cc8431f;
-      padding: 5px;
-      width: 300px;
-      flex-shrink: 0;
+    .order-header {
       text-align: center;
-      scroll-snap-align: start;
-      border: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      padding-bottom: 40px;
     }
-
-    .week{
-      background-color:#1dcedb1d;
-      color:var(--text-color);
+    .order-header h2 {
+      margin: 20px 0;
     }
-    .plan-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .plan-features {
-      list-style-type: none;
-      padding:5px;
-      margin-bottom: 0px;
-      font-size: 14px;
-      text-align:left!important;
-      color:var(--text-color);
-    }
-
-    .plan-features li {
-      margin-bottom: 8px;
-    }
-
-    .plan-details {
-      text-align:left!important;
+    .order-label {
       display: block;
-      padding: 10px;
-      margin-top: 0px;
-      border-radius: 8px;
-      font-size: 14px;
-      color:var(--text-color);
+      margin: 20px 0 5px;
+      font-weight: bold;
+        
     }
+  .order-input, .order-select, .order-button {
+    width: 100%; /* Ensures full width */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #44444443;
+    color: var(--text-color);
+    background-color:transparent;
+    border-radius: 5px;
+    box-sizing: border-box; /* Includes padding and border in width calculation */
+    border: 1px solid transparent; /* Make sure there's space for the border */
+      background-clip: padding-box; /* Ensures the background stays inside the border */
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      box-sizing: border-box;
+      color: var(--text-color);
+      background-color: var(--placeholder-bg);
+      outline: none;
+      transition: all 0.3s ease-in-out;
+  }
 
-
-    /* Specific styles for VIP plan */
-    .vip {
-      background-color:#f185402c;
-     color:var(--text-color);
+    .order-button {
+      background-color: #1caf2d;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin:20px 0;
     }
-
-    .vip .price {
-      color: #f0c14b;
+    .order-button:hover {
+      background-color: #0056b3;
     }
-
-    /* Adjustments for smaller screens */
-    @media (max-width: 480px) {
-      .pricing-card {
-        width: 70%;
-      }
-
-      .pricing-container {
-        gap: 15px;
-      }
-    }
+ 
 
 </style>
 </head>
@@ -1302,48 +1269,149 @@ Subscription</button>
       </button>
     </div>
   </div>
-  <h2>Subscription</h2>
+  <h2>Create Order</h2>
   <div class="other-card">
-  <div class="pricing-container">
-    <!-- 1 Day Plan -->
-    <div class="pricing-card">
-      <h3 class="plan-title">💵 1 Day: 50 pesos (basic)</h3>
-      <ul class="plan-features">
-        <li>✅ Unlimited access for 1 day</li>
-        <li>✅ Easy access to website and app</li>
-      </ul>
-      <div class="plan-details">
-        <p>Enjoy unlimited access for one day!</p>
-      </div>
-    </div>
+    
+  <div class="order-container">
+    <form id="order-purchaseForm">
+      <label for="order-recipientName" class="order-label">Recipient Name</label>
+      <input type="text" id="order-recipientName" class="order-input" placeholder="Enter recipient name" required>
 
-    <!-- 1 Week Plan -->
-    <div class="pricing-card week">
-      <h3 class="plan-title">💵 1 Week: 150 pesos (basic)</h3>
-      <ul class="plan-features">
-        <li>✅ Unlimited access for 1 week</li>
-        <li>✅ Easy access to website and app</li>
-        <li>✅ Can request (if available)</li>
-      </ul>
-      <div class="plan-details">
-        <p>Enjoy unlimited access for 7 days with request options!</p>
-      </div>
-    </div>
+      <label for="order-accountUsername" class="order-label">Account Username</label>
+      <input type="text" id="order-accountUsername" class="order-input" placeholder="Enter account username" required>
 
-    <!-- Lifetime Plan -->
-    <div class="pricing-card vip">
-      <h3 class="plan-title">💵 Lifetime: 299 pesos (VIP)</h3>
-      <ul class="plan-features">
-        <li>✅ Lifetime access to all</li>
-        <li>✅ Easy access to website and app</li>
-        <li>✅ Priority requests (if available)</li>
-      </ul>
-      
-      <div class="plan-details">
-        <p>Lifetime access with priority requests. Get the VIP experience!</p>
-      </div>
-    </div>
+      <label for="order-accountPassword" class="order-label">Account Password</label>
+      <input type="password" id="order-accountPassword" class="order-input" placeholder="Enter account password" required>
+
+      <label for="order-planType" class="order-label">Plan Type</label>
+      <select id="order-planType" class="order-select" onchange="updatePrice()" required>
+        <option value="">Select a plan</option>
+        <option value="1Day">1 Day</option>
+        <option value="Weekly">1 Week</option>
+        <option value="Lifetime">Lifetime</option>
+      </select>
+
+      <label for="order-planPrice" class="order-label">Plan Price</label>
+      <input type="number" id="order-planPrice" class="order-input" placeholder="Automatically filled based on plan" readonly>
+
+      <button type="button" id="order-generatePDFButton" class="order-button" onclick="generatePDF()">Generate PDF</button>
+    </form>
   </div>
+  <script>
+    function updatePrice() {
+      const planType = document.getElementById("order-planType").value;
+      const priceInput = document.getElementById("order-planPrice");
+
+      switch (planType) {
+        case "1Day":
+          priceInput.value = 50;
+          break;
+        case "Weekly":
+          priceInput.value = 150;
+          break;
+        case "Lifetime":
+          priceInput.value = 299;
+          break;
+        default:
+          priceInput.value = "";
+      }
+    }
+
+    function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+
+      // Get form values
+      const recipientName = document.getElementById("order-recipientName").value;
+      const accountUsername = document.getElementById("order-accountUsername").value;
+      const accountPassword = document.getElementById("order-accountPassword").value;
+      const planType = document.getElementById("order-planType").value;
+      const planPrice = document.getElementById("order-planPrice").value;
+
+      if (!recipientName || !accountUsername || !accountPassword || !planType || !planPrice) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const benefits = {
+        "1Day": [
+          "Unli access to all (for 1 day)",
+          "Easy access to website and App"
+        ],
+        "Weekly": [
+          "Unli access to all (for 1 week)",
+          "Easy access to website and App",
+          "Can request (if available)"
+        ],
+        "Lifetime": [
+          "Lifetime access to all",
+          "Easy access to website and App",
+          "Prioritize Request if available"
+        ]
+      };
+
+      // PDF Content
+      pdf.setFontSize(16);
+      pdf.setFont("Helvetica", "bold");
+      pdf.text("Purchase Confirmation", 105, 20, { align: "center" });
+
+      const marginTop = 30; // Adding margin at the top for the header
+      const spaceBetweenSections = 15; // Space between sections
+
+      pdf.setFontSize(12);
+      pdf.setFont("Helvetica", "normal");
+      pdf.text(`Dear ${recipientName},`, 10, marginTop + spaceBetweenSections);
+      pdf.text("Your purchase is now confirmed. Refer below for the details of your availed plan.", 10, marginTop + spaceBetweenSections + 10);
+
+      // Add margin between sections
+      const margin = 10;
+
+      // Account Details
+      const accountY = marginTop + 30 + spaceBetweenSections;
+      pdf.setFontSize(14);
+      pdf.setFont("Helvetica", "bold");
+      pdf.text("Account Details", 10, accountY);
+      pdf.setFontSize(12);
+      pdf.setFont("Helvetica", "normal");
+      pdf.text(`Username: ${accountUsername}`, 10, accountY + 10);
+      pdf.text(`Password: ${accountPassword}`, 10, accountY + 20);
+
+      // Add margin between sections
+      const purchaseDetailsY = accountY + 40;
+
+      // Purchase Details
+      pdf.setFontSize(14);
+      pdf.setFont("Helvetica", "bold");
+      pdf.text("Purchase Details", 10, purchaseDetailsY);
+      pdf.setFontSize(12);
+      pdf.setFont("Helvetica", "normal");
+      pdf.text(`Plan: ${planType}`, 10, purchaseDetailsY + 10);
+      pdf.text(`Price: Php${parseFloat(planPrice).toFixed(2)}`, 10, purchaseDetailsY + 20);
+      pdf.text("Payment Method: GCash", 10, purchaseDetailsY + 30);
+
+      // Benefits Table (Not showing its Label)
+      const benefitsY = purchaseDetailsY + 40;
+      pdf.setFontSize(12);
+      pdf.autoTable({
+        startY: benefitsY + 10,
+        head: [["Benefits"]],
+        body: benefits[planType].map((benefit) => [benefit]),
+        styles: {
+          fontSize: 10,
+          cellPadding: 5,
+        },
+        margin: { top: 10 },
+      });
+
+      // Thank You Note
+      pdf.setFontSize(12);
+      pdf.setTextColor(255, 0, 0);  // Red color
+      pdf.text("Thank you for your purchase!", 105, pdf.lastAutoTable.finalY + 20, { align: "center" });
+
+      // Save PDF
+      pdf.save(`${recipientName}_Purchase_Confirmation.pdf`);
+    }
+  </script>
   </div>
 </div>
   <script>
@@ -1360,8 +1428,6 @@ Subscription</button>
   </script>
   
   </div>
-
-
 
 <script>
 
@@ -1875,7 +1941,6 @@ function handleTouchMove(event) {
 
 
 </script>
-
 <script>
     const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.blogger.com%2Ffeeds%2F3434317895581666633%2Fposts%2Fdefault&api_key=f1wz56jkpxrjxaruc4pum1xymrkfa8fxodu8i9xh&count=99';
 
@@ -2030,7 +2095,6 @@ function handleTouchMove(event) {
         }
     }
 </script>
-
   <script>
     // JavaScript for tab functionality
     const tabs = document.querySelectorAll('.tsn-tab');
@@ -2049,7 +2113,6 @@ function handleTouchMove(event) {
       });
     });
   </script>
-  
   <script>
        function updateDateTime() {
       const dateElement = document.getElementById("date");
