@@ -769,6 +769,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       background-color: #1caf2d;
       color: white;
       border: none;
+      margin-top:5px;
       border-radius: 4px;
       cursor: pointer;
     }
@@ -1125,7 +1126,7 @@ Billing</button>
     <label class="credential-label" for="username">Username</label>
     <input class="credential-input" type="text" id="username" name="username" required>
     <label class="credential-label" for="text">Password</label>
-    <input class="credential-input" type="password" id="password" name="password" required>
+    <input type="text" class="credential-input" type="password" id="password" name="password" required>
     <label class="credential-label" for="category">Category</label>
     <select class="credential-select" id="category" name="category" required>
       <option value="lifetime">Lifetime</option>
@@ -1366,6 +1367,7 @@ const deleteAccount = (id) => {
       <input type="text" id="order-accountUsername" class="order-input" placeholder="Enter account username" required>
 
       <label for="order-accountPassword" class="order-label">Account Password</label>
+     
       <input type="password" id="order-accountPassword" class="order-input" placeholder="Enter account password" required>
 
       <label for="order-planType" class="order-label">Plan Type</label>
