@@ -554,9 +554,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     background-color: var(--placeholder-bg);
     outline:none;
   }
-
-
-  .order-input:hover, textarea:hover, input[type="text"]:hover, .user-transaction:hover{
+.input.credential-input:hover, .order-input:hover, textarea:hover, input[type="text"]:hover{
       animation: borderRotate 2s linear infinite;
       border-image-source: linear-gradient(90deg, transparent, #ff0000, transparent);
       border-image-slice: 1;
@@ -724,125 +722,109 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   display: block;
 }
 
-   
+   .credential-form h2{
+     font-size: 20px;
+     margin-bottom:30px;
+   }
        
-    .user-container {
-        width: 95%;
-        margin: 20px auto;
-        padding:0px;
-        
+    .credential-form {
+      padding: 20px;
+      width: 88%;
+      margin-bottom: 20px;
+      background: transparent;
     }
-    
-
-    /* Tab container */
-    .tsn-tab-container {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 40px;
+    .credential-label {
+      display: block;
+      margin-bottom: 8px;
+      background: transparent;
     }
+    .credential-input, .credential-select {
+      width: 94%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border-radius: 4px;
+      border: none;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   background-color: var(--placeholder-bg);
+   color:var(--text-color);
+    }
+       .credential-select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      border: none;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   background-color: var(--placeholder-bg);
+   color:var(--text-color);
+    }
+.credential-input:focus{
+  outline:none;
+}
 
-    .tsn-tab {
-      flex: 1;
-      text-align: center;
-      padding: 10px 20px;
-      margin-bottom:10px;
+
+    .credential-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #1caf2d;
+      color: white;
+      border: none;
+      border-radius: 4px;
       cursor: pointer;
-      font-weight: bold;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s, color 0.3s;
     }
-
-    .tsn-tab.active {
-      border-bottom: 2px solid #14a23b;
-     
+    .credential-button:hover {
+      background-color: #0056b3;
     }
-
-    /* Tab content */
-    .tsn-tab-content {
+    .credential-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2px;
+    }
+    .credential-tab {
+      margin: 0 10px;
+      padding: 10px 10px;
+      cursor: pointer;
+    }
+    .credential-tab.active {
+      border-bottom: 1px solid #25cb62;
+      color: var(--text-color);
+    }
+    .credential-account-list {
+      width: 100%;
+    }
+    .credential-account-list ul {
+      list-style-type: none;
+      padding: 20px;
+      min-height: 100px;
+    }
+    .credential-account-item {
+      padding: 10px;
+      margin: 5px 0;
+      background-color: var(--placeholder-bg);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      border: 1px solid rgba(60,60,60,0.1);
+    }
+    .credential-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0px;
+    }
+    .credential-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .credential-actions button img {
+      width: 20px;
+    }
+    .credential-hidden {
       display: none;
     }
-
-    .tsn-tab-content.active {
-      display: block;
-      padding: 10px;
-      border-radius: 5px;
-    }
     
-    .user-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-    .user-search-bar {
-        width: 100%;
-        padding: 10px;
-        margin-top:20px;
-        margin-bottom: 20px;
-        border: 1px solid var(--border-color) ;
-        border-radius: 4px;
-        font-size: 14px;
-        color:var(--text-color);
-        background-color: transparent;
-    }
-    .user-transaction {
-        display: flex;
-        align-items: center;
-        margin-bottom: 5px;
-        border: 1px solid #80808022;
-border-radius: 5px;
-        padding: 10px;
-    }
-
-.user-search-bar {
-    outline: none; /* Removes the default outline */
-
-}
-
-.user-search-bar:focus {
-    outline: none; /* Ensures no outline appears when focused */
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
-  
-}
-    .user-icon {
-        width: 40px;
-        height: 40px;
-        background-color: #e0e0e0;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        margin-right: 15px;
-    }
-    .user-details {
-        flex: 1;
-    }
-    .user-item {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .user-date {
-        font-size: 12px;
-        color: #888;
-    }
-    .user-status-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-    .user-status {
-        font-weight: bold;
-        color: #28a745;
-        margin-bottom: 5px;
-    }
-    .user-status.pending {
-        color: #ff9800;
-    }
-    .user-id {
-        font-size: 12px;
-        color: #888;
-        margin-top: 5px;
-    }
+    
 
 
 #others{
@@ -1138,129 +1120,223 @@ Subscription</button>
 </div>
  <div class="content" id="links" style="display: none;">
      
- <section id="users">
-<div class="user-container">
-    <input type="text" id="user-search" class="user-search-bar" placeholder="Search transactions..." onkeyup="filterTransactions()">
-
-  <div class="tsn-tab-container">
-    <div class="tsn-tab active" data-tab="transaction">Transaction</div>
-    <div class="tsn-tab" data-tab="trial">Trial</div>
+  <form class="credential-form" id="accountForm">
+    <h2>Create Account</h2>
+    <label class="credential-label" for="username">Username</label>
+    <input class="credential-input" type="text" id="username" name="username" required>
+    <label class="credential-label" for="text">Password</label>
+    <input class="credential-input" type="password" id="password" name="password" required>
+    <label class="credential-label" for="category">Category</label>
+    <select class="credential-select" id="category" name="category" required>
+      <option value="lifetime">Lifetime</option>
+      <option value="short-term">Short Term</option>
+      <option value="trial">Trial</option>
+    </select>
+    <div class="credential-hidden" id="timeInputs">
+      <label class="credential-label" for="expirationTime">Expiration Time</label>
+      <input class="credential-input" type="datetime-local" id="expirationTime" name="expirationTime">
+    </div>
+    <button class="credential-button" type="submit">Add Account</button>
+  </form>
+  <div class="credential-tabs">
+    <div class="credential-tab active" onclick="showCategory('lifetime')">Lifetime</div>
+    <div class="credential-tab" onclick="showCategory('short-term')">Short Term</div>
+    <div class="credential-tab" onclick="showCategory('trial')">Trial</div>
   </div>
 
-  <div class="tsn-tab-content active" id="transaction">
-   
-    
-    <div class="user-transaction">
-        <div class="user-icon">😜</div>
-        <div class="user-details">
-            <div class="user-item">Eunwoo</div>
-            <div class="user-date">Masteroppa</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status">Lifetime</div>
-            <div class="user-id">P299.00</div>
-        </div>
-    </div>
-    <div class="user-transaction">
-        <div class="user-icon">😁</div>
-        <div class="user-details">
-            <div class="user-item">Oppasarang</div>
-            <div class="user-date">sarang</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status">Lifetime</div>
-            <div class="user-id">P299.00</div>
-        </div>
-    </div>
-    <div class="user-transaction">
-        <div class="user-icon">😍</div>
-        <div class="user-details">
-            <div class="user-item">geolliyaah</div>
-            <div class="user-date">143saranghae</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status">Lifetime</div>
-            <div class="user-id">P299.00</div>
-        </div>
-    </div>
-    <div class="user-transaction">
-        <div class="user-icon">🤑</div>
-        <div class="user-details">
-            <div class="user-item">shunnelle</div>
-            <div class="user-date">shunnelle</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status pending">Lifetime</div>
-            <div class="user-id">Php299.00</div>
-        </div>
-    </div>
-<div class="user-transaction">
-        <div class="user-icon">🤩</div>
-        <div class="user-details">
-            <div class="user-item">Pring2</div>
-            <div class="user-date">Manogura123</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status">Lifetime</div>
-            <div class="user-id">P299.00</div>
-        </div>
-    </div>
-    
+  <div class="credential-account-list">
+    <ul id="accounts"></ul>
   </div>
-  <div class="tsn-tab-content" id="trial">
-   <div class="user-transaction">
-        <div class="user-icon">🤗</div>
-        <div class="user-details">
-            <div class="user-item">User2</div>
-            <div class="user-date">VTPZEJ4N19</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status pending">Trial</div>
-            <div class="user-id">Pending</div>
-        </div>
-    </div>
-    <div class="user-transaction">
-        <div class="user-icon">😘</div>
-        <div class="user-details">
-            <div class="user-item">User3</div>
-            <div class="user-date">wSJSvdPPoh</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status pending">Trial</div>
-            <div class="user-id">Pending</div>
-        </div>
-    </div>
-    <div class="user-transaction">
-        <div class="user-icon">😇</div>
-        <div class="user-details">
-            <div class="user-item">User4</div>
-            <div class="user-date">YV2XrgNqIa</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status pending">Trial</div>
-            <div class="user-id">Pending</div>
-        </div>
-    </div>
-        <div class="user-transaction">
-        <div class="user-icon">😉</div>
-        <div class="user-details">
-            <div class="user-item">User5</div>
-            <div class="user-date">lTiRI45gJX</div>
-        </div>
-        <div class="user-status-container">
-            <div class="user-status pending">Trial</div>
-            <div class="user-id">Pending</div>
-        </div>
-    </div>
-    
-    
-  </div>
-  
-  </div>
+  <script>
+    const accountForm = document.getElementById('accountForm');
+    const accountsList = document.getElementById('accounts');
+    const categorySelect = document.getElementById('category');
+    const timeInputs = document.getElementById('timeInputs');
+    const apiUrl = 'https://675761d0c0a427baf94c9e1f.mockapi.io/credentials';
+    let currentCategory = 'lifetime';
+    let editingAccountId = null;
 
-    
-</div>
-    </section>
+    // Show/hide time input based on category
+    categorySelect.addEventListener('change', () => {
+      if (categorySelect.value === 'short-term' || categorySelect.value === 'trial') {
+        timeInputs.classList.remove('credential-hidden');
+      } else {
+        timeInputs.classList.add('credential-hidden');
+      }
+    });
+
+    // Format date to 12-hour format
+    const formatDate = (date) => {
+      return new Date(date).toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true,
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+      });
+    };
+
+    // Fetch accounts and filter by category
+    const fetchAccounts = () => {
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const filteredAccounts = data.filter(account => account.category === currentCategory);
+          accountsList.innerHTML = ''; // Clear the list
+          filteredAccounts.forEach(account => {
+            const accountItem = document.createElement('li');
+            accountItem.classList.add('credential-account-item');
+            accountItem.innerHTML = `
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>${account.username}</span>
+                <div class="credential-actions">
+                  <button onclick="editAccount('${account.id}'); event.stopPropagation()">
+                    <img src="https://cdn-icons-png.flaticon.com/128/10994/10994487.png" alt="Edit">
+                  </button>
+                  <button onclick="copyAccount('${account.username}', '${account.password}'); event.stopPropagation()">
+                    <img src="https://cdn-user-icons.flaticon.com/134578/134578843/1733830753538.svg?token=exp=1733832876~hmac=5eb3237e2dbda9170cbacc5b612449b4" alt="Copy">
+                  </button>
+                  <button onclick="deleteAccount('${account.id}'); event.stopPropagation()">
+                    <img style="height:17px;" src="https://cdn-icons-png.flaticon.com/128/3221/3221897.png" alt="Delete">
+                  </button>
+                </div>
+              </div>
+              <div id="details-${account.id}" class="credential-hidden">
+              <p style="color:grey">Password: ${account.password}</p>
+                <p style="color:grey">${
+                  account.category === 'lifetime' ? 'Lifespan' : 'Expiry Date'
+                }: ${
+                  account.category === 'lifetime'
+                    ? 'Lifetime Access'
+                    : account.expirationTime
+                    ? formatDate(account.expirationTime)
+                    : 'Not set'
+                }</p>
+              </div>
+            `;
+            accountsList.appendChild(accountItem);
+
+            // Handle auto-delete for expired accounts
+            if (account.expirationTime && new Date(account.expirationTime) < new Date()) {
+              deleteAccount(account.id);
+            }
+
+            // Add event listener to the whole list item for toggle
+            accountItem.addEventListener('click', () => toggleDetails(account.id));
+          });
+        })
+        .catch(error => console.error('Error fetching accounts:', error));
+    };
+
+    // Toggle details visibility when clicking anywhere on the list item
+    const toggleDetails = (id) => {
+      const details = document.getElementById(`details-${id}`);
+      details.classList.toggle('credential-hidden');
+    };
+
+    // Handle category switching
+    const showCategory = (category) => {
+      currentCategory = category;
+      document.querySelectorAll('.credential-tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelector(`.credential-tab:nth-child(${['lifetime', 'short-term', 'trial'].indexOf(category) + 1})`).classList.add('active');
+      fetchAccounts();
+    };
+
+    // Edit an account
+    const editAccount = (id) => {
+      fetch(`${apiUrl}/${id}`)
+        .then(response => response.json())
+        .then(account => {
+          editingAccountId = id; // Set the account being edited
+          document.getElementById('username').value = account.username;
+          document.getElementById('password').value = account.password;
+          document.getElementById('category').value = account.category;
+          if (account.expirationTime) {
+            document.getElementById('expirationTime').value = account.expirationTime;
+            timeInputs.classList.remove('credential-hidden');
+          } else {
+            timeInputs.classList.add('credential-hidden');
+          }
+        })
+        .catch(error => console.error('Error editing account:', error));
+    };
+
+    // Add or update account
+    accountForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const category = categorySelect.value;
+      const expirationTime = document.getElementById('expirationTime').value || null;
+
+      if (editingAccountId) {
+        // Update existing account
+        fetch(`${apiUrl}/${editingAccountId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password, category, expirationTime }),
+        })
+          .then(() => {
+            alert('Account updated successfully!');
+            editingAccountId = null;
+            accountForm.reset();
+            fetchAccounts();
+          })
+          .catch(error => {
+            console.error('Error updating account:', error);
+            alert('An error occurred. Please try again.');
+          });
+      } else {
+        // Add new account
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password, category, expirationTime }),
+        })
+          .then(() => {
+            alert('Account added successfully!');
+            accountForm.reset();
+            fetchAccounts();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+          });
+      }
+    });
+
+
+// Delete account with confirmation
+const deleteAccount = (id) => {
+  const confirmation = confirm("Are you sure you want to delete this account?");
+  if (confirmation) {
+    fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
+      .then(() => {
+        alert('Account deleted successfully!');
+        fetchAccounts();
+      })
+      .catch(error => console.error('Error:', error));
+  }
+};
+
+    // Copy username and password
+    const copyAccount = (username, password) => {
+      const details = `Username: ${username}\nPassword: ${password}`;
+      navigator.clipboard.writeText(details)
+        .then(() => alert('Copied to clipboard!'))
+        .catch(error => console.error('Error copying:', error));
+    };
+
+    // Initial fetch
+    fetchAccounts();
+  </script>
+
   </div>
  <div class="content" id="others" style="display: none;">
      
@@ -2088,22 +2164,7 @@ function handleTouchMove(event) {
 
     fetchRSSData();
 </script>
-<script>
-    function filterTransactions() {
-        const searchValue = document.getElementById('user-search').value.toLowerCase();
-        const transactions = document.getElementsByClassName('user-transaction');
 
-        for (const transaction of transactions) {
-            const transactionText = transaction.innerText.toLowerCase();
-
-            if (transactionText.includes(searchValue)) {
-                transaction.style.display = 'flex';
-            } else {
-                transaction.style.display = 'none';
-            }
-        }
-    }
-</script>
   <script>
     // JavaScript for tab functionality
     const tabs = document.querySelectorAll('.tsn-tab');
