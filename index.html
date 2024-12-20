@@ -627,6 +627,28 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
 
 
+.input-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.error-indicator {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+}
+
+input:invalid + .error-indicator,
+textarea:invalid + .error-indicator {
+  display: block;
+}
 
   .dark-mode-label,
   .light-mode-label {
@@ -2049,7 +2071,7 @@ function handleTouchMove(event) {
             const response = await fetch(rssUrl);
             const data = await response.json();
             displayRandomItems(data.items);
-            const orderedCategories = ['Short Drama', 'Series', 'Movie']; // Order categories here
+            const orderedCategories = ['Short Drama']; // Order categories here
             displayCategories(data.items, orderedCategories);
         } catch (error) {
             console.error('Error fetching RSS feed:', error);
@@ -2254,6 +2276,72 @@ function handleTouchMove(event) {
       }
     }
   </script>
+<script>
+// Validation for Movie and Series input fields
+function validateInput(input, regex) {
+  const value = input.value.trim();
+  return regex.test(value);
+}
 
+function toggleErrorIndicator(input, isValid) {
+  let errorIndicator = input.parentNode.querySelector(".error-indicator"); // Look for the indicator within the input container
+  if (!errorIndicator) {
+    // If indicator doesn't exist, create it
+    errorIndicator = document.createElement("div");
+    errorIndicator.className = "error-indicator";
+    input.parentNode.appendChild(errorIndicator); // Add the indicator as the last child of the container
+  }
+
+  // Toggle visibility based on validation
+  errorIndicator.style.display = isValid ? "none" : "block";
+}
+
+// List of input IDs and their validation patterns
+const inputsToValidate = [
+  {
+    inputId: "seriesThumbnailInput3",
+    regex: /\.(jpg|jpeg|png|gif|webp)$/i, // For image links
+  },
+  {
+    inputId: "thumbnailInput",
+    regex: /\.(jpg|jpeg|png|gif|webp)$/i, // For image links
+  },
+  {
+    inputId: "iframeInput",
+    regex: /^https?:\/\//, // For valid URLs
+  },
+  {
+    inputId: "releaseInput3",
+    regex: /^(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2},\s\d{4}$|^\d{4}$/, // Valid dates like January 13, 2025 or 2025
+  },
+  {
+    inputId: "releaseInput",
+    regex: /^(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2},\s\d{4}$|^\d{4}$/, // Valid dates
+  },
+  {
+    inputId: "countryInput3",
+    regex: /^[A-Za-z\s]+$/, // For alphabetic countries
+  },
+  {
+    inputId: "countryInput",
+    regex: /^[A-Za-z\s]+$/, // For alphabetic countries
+  },
+];
+
+inputsToValidate.forEach(({ inputId, regex }) => {
+  const input = document.getElementById(inputId);
+
+  // Wrap input in a container
+  const wrapper = document.createElement("div");
+  wrapper.className = "input-container";
+  input.parentNode.insertBefore(wrapper, input);
+  wrapper.appendChild(input);
+
+  input.addEventListener("input", () => {
+    const isValid = validateInput(input, regex);
+    toggleErrorIndicator(input, isValid);
+  });
+});
+</script>
 </body>
 </html>
