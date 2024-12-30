@@ -2544,19 +2544,34 @@ inputsToValidate.forEach(({ inputId, regex }) => {
     });
   };
 
-// Fetch the accounts and display based on selected category
 const fetchAccounts = () => {
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
       let filteredAccounts = [];
+
+      // Filter accounts based on category
       if (currentCategory === 'Short Term') {
-        // Show 1 Day and 1 Week plans under Short Term
         filteredAccounts = data.filter(account => account.category === '1 Day' || account.category === '1 Week');
       } else {
-        // Filter accounts by the selected category (Lifetime, Trial)
         filteredAccounts = data.filter(account => account.category === currentCategory);
       }
+
+      // Get the current date to compare with expiration time
+      const currentDate = new Date();
+
+      // Filter out expired accounts and automatically delete them
+      filteredAccounts = filteredAccounts.filter(account => {
+        if (account.expirationTime) {
+          const expirationDate = new Date(account.expirationTime);
+          if (expirationDate < currentDate) {
+            // If the account has expired, delete it automatically
+            deleteAccount(account.id);  // Assuming deleteAccount is defined elsewhere
+            return false;  // Exclude this account from the list
+          }
+        }
+        return true;  // Include this account
+      });
 
       accountsList.innerHTML = ''; // Clear the accounts list
 
@@ -2564,20 +2579,20 @@ const fetchAccounts = () => {
       filteredAccounts.forEach(account => {
         const accountItem = document.createElement('li');
         accountItem.classList.add('credential-account-item');
-        
+
         // Dynamically determine the price based on the account category
         let price = 0;
         if (account.category === "1 Day") {
-          price = 50.0;  // Price for 1 Day
+          price = 50.0;
         } else if (account.category === "1 Week") {
-          price = 150.0;  // Price for 1 Week
+          price = 150.0;
         } else if (account.category === "Lifetime") {
-          price = 299.0;  // Price for Lifetime
+          price = 299.0;
         } else if (account.category === "Trial") {
-          price = 0.0;  // Price for Trial (free)
+          price = 0.0;
         }
 
-        // Display price and other info
+        // Display account information
         accountItem.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span>${account.username}</span>
@@ -2599,10 +2614,8 @@ const fetchAccounts = () => {
           <div id="details-${account.id}" class="credential-hidden">
             <p style="color:grey">Password: ${account.password}</p>
             <p style="color:grey">Category: ${account.category}</p>
-            <p style="color:grey">Price: ₱${price}</p>  <!-- Updated to Peso sign -->
-            <p style="color:grey">${
-              account.category === 'Lifetime' ? 'Expiry Date' : 'Expiry Date'
-            }: ${
+            <p style="color:grey">Price: ₱${price}</p>
+            <p style="color:grey">Expiry Date: ${
               account.category === 'Lifetime'
                 ? 'Lifetime'
                 : account.expirationTime
