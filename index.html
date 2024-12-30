@@ -2718,14 +2718,24 @@ const showCategory = (category) => {
     }
   });
 
-  // Delete an account
-  const deleteAccount = (id) => {
-    if (confirm("Are you sure you want to delete this account?")) {
-      fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
-        .then(response => response.ok ? fetchAccounts() : alert('Failed to delete account'))
-        .catch(error => console.error('Error deleting account:', error));
-    }
-  };
+// Example deleteAccount function without confirmation
+const deleteAccount = (accountId) => {
+  // Call to your API or logic to delete the account from the database
+  fetch(`${apiUrl}/${accountId}`, {
+    method: 'DELETE',
+  })
+    .then(response => response.json())
+    .then(() => {
+      console.log(`Account ${accountId} deleted successfully.`);
+      // Optionally, remove the account from the DOM
+      const accountElement = document.getElementById(accountId);
+      if (accountElement) {
+        accountElement.remove();
+      }
+    })
+    .catch(error => console.error('Error deleting account:', error));
+};
+
 
   // Copy account details to clipboard
   const copyAccount = (username, password) => {
