@@ -1105,7 +1105,7 @@ padding: 5px 15px;
     .reg-modal-content {
       position: fixed;
       margin: 0;
-      padding: 60px 40px;
+      padding: 60px 55px;
       background-color:var(--background-color);
       width: 100%;
       height:100vh;
@@ -1113,7 +1113,7 @@ padding: 5px 15px;
     }
 
     .reg-modal-content img {
-      width: 80%;
+      width: 70%;
       height:80%;
       border-radius: 8px;
     }
@@ -1146,6 +1146,144 @@ padding: 5px 15px;
   right: -5px;
 }
 
+    .headH .headSub {
+      max-width: none;
+    }
+
+    .headH .headSub::before {
+      content: "About";
+    }
+
+    /* About Author CSS */
+    .aboutAuthor {
+      text-align: center;
+      padding: 130px 0 10px 0;
+    }
+
+    .aboutAuthor .mainAuthor {
+      position: relative;
+      display: inline-block;
+      padding:0 30px 30px 30px;
+      background-color: var(--placeholder-bg);
+      border-radius: 20px;
+      margin: 10px;
+      border:solid 1px var(--border-color);
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+
+    .aboutAuthor .mainAuthor img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .aboutAuthor .mainAuthor h1 {
+      margin-top: 70px;
+      font-size: 24px;
+      color:var(--text-color);
+    }
+
+    .aboutAuthor .mainAuthor p {
+      font-size: 14px;
+      margin: 10px 0;
+      color:var(--text-color);
+    }
+
+    .aboutAuthor .subAuthors {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .aboutAuthor .subAuthors .author {
+      text-align: center;
+    }
+
+    .aboutAuthor .subAuthors img {
+      position:relative;
+      top:0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      
+    }
+
+    .aboutAuthor .subAuthors .name {
+      font-size: 12px;
+      color: var(--text-color);
+      margin-top: 8px;
+    }
+
+    /* Website Stats */
+    .statsHeading {
+      text-align: center;
+      color:var(--text-color);
+    }
+
+    .statsWebsite {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin: 0px auto;
+      m
+    }
+
+    .statsCont {
+      background-color:var(--placeholder-bg);
+      color:var(--text-color);
+      display: flex;
+      justify-content: center;
+      padding: 8px;
+      margin: 12px 10px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      border-radius: 20px;
+    }
+
+    .statsCont .stats {
+      height: 80px;
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin: 0 35px;
+    }
+
+    .statsCont .statsName {
+      display: inline-flex;
+      align-items: center;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+  .statsCom{
+  margin-bottom:100px;
+}
+    .statsCont .statsNumber {
+      font-size: 30px;
+      margin-top: 6px;
+      font-weight: normal;
+      color: var(--text-color);
+    }
+
+    @media screen and (min-width: 641px) {
+      .statsWebsite {
+        flex-direction: row;
+      }
+
+      .statsCont {
+        max-width: 46%;
+        margin: 12px;
+      }
+    }
+  .fa-comment-dots, .fa-pen-to-square{
+   margin-right:5px; 
+  }
 </style>
 </head>
 <body>
@@ -1247,8 +1385,8 @@ padding: 5px 15px;
 
 
   <button onclick="showContent('others')">
-<i class="fas fa-coins"></i>
-Billing</button>
+<i class="fa-solid fa-chart-simple"></i>
+Stats</button>
  <!-- New button -->
 </div>
 <div class="content" id="home">
@@ -1657,179 +1795,64 @@ function checkEmptyContainers() {
 
  <div class="content" id="others" style="display: none;">
      
-<div class="other-card">
-   <div class="card">
-    <!-- Image -->
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYKtWSnuXpJK1G4IbETqImz9rze7wUhnfV4jWRUkdxA5j-tVyztdu3YVuu3EuaP2HB_1pT_dKO6BduvWOTnKI1bOtp8l6OSHFteJB2EIZRY4zl12rFHmOyfPBjx70D3-3dsY-gaORgKc7IWfWKVJlnI5-uyJ2Bwirx1AQPECVfPeV0xAaA9KpvD-I6PYNz/s2436/1000109601.jpg" alt="Image">
+  <div class="aboutAuthor">
+    <!-- Main Author -->
+    <div class="mainAuthor">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHc7E6YXtKafUksHEvIfjn2FZEw16BhK2EpOYvMG9dXkd_wtwVWp3F5p48Fffwzsju1qZExZAimrj8Yi1R4pR652coSkCgm1w_0JPJaa6FO9FS0gbd3zHP9Li-tKOEg54x8QN9A6t8CtNsClBlO1_jwiHAcUfId7BIwPbIgU45auVV4g/s220/Picsart_24-12-15_20-13-26-617.jpg" alt="Master Oppa">
+      <h1>ABEFILM</h1>
+      <p>Discover Stories Worth Watching <br/><br/>– Explore trending short dramas, movies, and series with hidden gems curated just for you.</p>
+  
+    <!-- Sub Authors -->
+    <div class="subAuthors">
+      <div class="author">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEibAH7Wq9Zvnk3Xtu3B-9YGcQRDAw52hnem1YB4v0HboiSrKOqVmROBDAxpBRyJuBcvsUQ20irdkU8Ln-nDurCNqQ3-HPD5PRAtEAOMwzS94gxz0hxkOIWZhpuL2_ZE72I-sBZfN6565d3rdaIV_DD96WF8DxaGk6M8FGfJ27VhxkE/s220/4516604.png" alt="Master Oppa">
+        <div class="name">Master Oppa</div>
+      </div>
+      <div class="author">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAfQJsQefsRWzORiuNLcW3l_WwFph2-hlIudH5J9HCuSXdudWaPELrZXH92XKVSrfu2oZhxek94G_kdeSC5C-VrndXe3PgOmbyGgsJfsU3wMBFwU_n8ZK4SGTh_gd7dNniGP7iISYNDG0tiTtNeApnJVyQ-six4vKC1mfLcn3wZmV2/s220/Picsart_23-06-02_14-40-41-163.jpg" alt="Oppa Sarang">
+        <div class="name">Oppa Sarang</div>
+      </div>
 
-    <!-- Description -->
-    <div class="card-content">
-      <p id="description">Account: AR**L M.</p>
-      <p id="description">Number: 09074644272</p>
-      <button class="copy-btn" onclick="copyDescription()">
-        <i class="fa-solid fa-copy"></i> Copy
-      </button>
     </div>
   </div>
-  <h2>Purchase Confirmation</h2>
-  <div class="other-card">
-    
-  <div class="order-container">
-    <form id="order-purchaseForm">
-      <label for="order-recipientName" class="order-label">Recipient Name</label>
-      <input type="text" id="order-recipientName" class="order-input" placeholder="Enter recipient name" required>
-
-      <label for="order-accountUsername" class="order-label">Account Username</label>
-      <input type="text" id="order-accountUsername" class="order-input" placeholder="Enter account username" required>
-
-      <label for="order-accountPassword" class="order-label">Account Password</label>
-     
-      <input type="password" id="order-accountPassword" class="order-input" placeholder="Enter account password" required>
-
-      <label for="order-planType" class="order-label">Plan Type</label>
-      <select id="order-planType" class="order-select" onchange="updatePrice()" required>
-        <option value="">Select a plan</option>
-        <option value="1Day">1 Day</option>
-        <option value="Weekly">1 Week</option>
-        <option value="Lifetime">Lifetime</option>
-      </select>
-
-      <label for="order-planPrice" class="order-label">Plan Price</label>
-      <input type="number" id="order-planPrice" class="order-input" placeholder="Automatically filled based on plan" readonly>
-
-      <button type="button" id="order-generatePDFButton" class="order-button" onclick="generatePDF()">Generate PDF</button>
-    </form>
+   
+    </div>
+  <h3 class="statsHeading">Blog Stats</h3>
+  <div class="statsWebsite">
+    <div class="statsCont">
+      <div class="stats">
+        <div class="statsName"><i class="fa-regular fa-pen-to-square"></i> Posts</div>
+        <div class="statsNumber p">0</div>
+      </div>
+    </div>
+    <div class="statsCont statsCom">
+      <div class="stats">
+        <div class="statsName"><i class="fa-regular fa-comment-dots"></i> Comments</div>
+        <div class="statsNumber c">0</div>
+      </div>
+    </div>
   </div>
   <script>
-    function updatePrice() {
-      const planType = document.getElementById("order-planType").value;
-      const priceInput = document.getElementById("order-planPrice");
+    var blogUrl = "https://abefilmstreamtv.blogspot.com/";
 
-      switch (planType) {
-        case "1Day":
-          priceInput.value = 50;
-          break;
-        case "Weekly":
-          priceInput.value = 150;
-          break;
-        case "Lifetime":
-          priceInput.value = 299;
-          break;
-        default:
-          priceInput.value = "";
-      }
+    function statsPst(json) {
+      document.querySelector('.statsNumber.p').textContent = json.feed.openSearch$totalResults.$t;
     }
 
-    function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF();
-
-      // Get form values
-      const recipientName = document.getElementById("order-recipientName").value;
-      const accountUsername = document.getElementById("order-accountUsername").value;
-      const accountPassword = document.getElementById("order-accountPassword").value;
-      const planType = document.getElementById("order-planType").value;
-      const planPrice = document.getElementById("order-planPrice").value;
-
-      if (!recipientName || !accountUsername || !accountPassword || !planType || !planPrice) {
-        alert("Please fill out all fields.");
-        return;
-      }
-
-      const benefits = {
-        "1Day": [
-          "Unli access to all (for 1 day)",
-          "Easy access to website and App"
-        ],
-        "Weekly": [
-          "Unli access to all (for 1 week)",
-          "Easy access to website and App",
-          "Can request (if available)"
-        ],
-        "Lifetime": [
-          "Lifetime access to all",
-          "Easy access to website and App",
-          "Prioritize Request if available"
-        ]
-      };
-
-      // PDF Content
-      pdf.setFontSize(16);
-      pdf.setFont("Helvetica", "bold");
-      pdf.text("Purchase Confirmation", 105, 20, { align: "center" });
-
-      const marginTop = 30; // Adding margin at the top for the header
-      const spaceBetweenSections = 15; // Space between sections
-
-      pdf.setFontSize(12);
-      pdf.setFont("Helvetica", "normal");
-      pdf.text(`Dear ${recipientName},`, 10, marginTop + spaceBetweenSections);
-      pdf.text("Your purchase is now confirmed. Refer below for the details of your availed plan.", 10, marginTop + spaceBetweenSections + 10);
-
-      // Add margin between sections
-      const margin = 10;
-
-      // Account Details
-      const accountY = marginTop + 30 + spaceBetweenSections;
-      pdf.setFontSize(14);
-      pdf.setFont("Helvetica", "bold");
-      pdf.text("Account Details", 10, accountY);
-      pdf.setFontSize(12);
-      pdf.setFont("Helvetica", "normal");
-      pdf.text(`Username: ${accountUsername}`, 10, accountY + 10);
-      pdf.text(`Password: ${accountPassword}`, 10, accountY + 20);
-
-      // Add margin between sections
-      const purchaseDetailsY = accountY + 40;
-
-      // Purchase Details
-      pdf.setFontSize(14);
-      pdf.setFont("Helvetica", "bold");
-      pdf.text("Purchase Details", 10, purchaseDetailsY);
-      pdf.setFontSize(12);
-      pdf.setFont("Helvetica", "normal");
-      pdf.text(`Plan: ${planType}`, 10, purchaseDetailsY + 10);
-      pdf.text(`Price: Php${parseFloat(planPrice).toFixed(2)}`, 10, purchaseDetailsY + 20);
-      pdf.text("Payment Method: GCash", 10, purchaseDetailsY + 30);
-
-      // Benefits Table (Not showing its Label)
-      const benefitsY = purchaseDetailsY + 40;
-      pdf.setFontSize(12);
-      pdf.autoTable({
-        startY: benefitsY + 10,
-        head: [["Benefits"]],
-        body: benefits[planType].map((benefit) => [benefit]),
-        styles: {
-          fontSize: 10,
-          cellPadding: 5,
-        },
-        margin: { top: 10 },
-      });
-
-      // Thank You Note
-      pdf.setFontSize(12);
-      pdf.setTextColor(255, 0, 0);  // Red color
-      pdf.text("Thank you for your purchase!", 105, pdf.lastAutoTable.finalY + 20, { align: "center" });
-
-      // Save PDF
-      pdf.save(`${recipientName}_Purchase_Confirmation.pdf`);
+    function statsCmt(json) {
+      document.querySelector('.statsNumber.c').textContent = json.feed.openSearch$totalResults.$t;
     }
-  </script>
-  </div>
-</div>
-  <script>
-    function copyDescription() {
-  const descriptionText = "Account: AR**L M.\nNumber: 09074644272"; // Combining both account and number
 
-  // Copy the text to clipboard
-  navigator.clipboard.writeText(descriptionText).then(() => {
-    alert('Description copied to clipboard!');
-  }).catch(err => {
-    alert('Failed to copy: ' + err);
-  });
-}
+    function Defer(jsUrl, id) {
+      var script = document.createElement('script');
+      script.src = jsUrl;
+      script.id = id;
+      document.body.appendChild(script);
+    }
+
+    Defer(blogUrl + 'feeds/posts/default?alt=json-in-script&callback=statsPst', 'sts-pst');
+    Defer(blogUrl + 'feeds/comments/default?alt=json-in-script&callback=statsCmt', 'sts-cmt');
   </script>
-  
   </div>
 
 <script>
