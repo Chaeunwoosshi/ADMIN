@@ -765,10 +765,8 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
     
    #reg-pendingUsersContainer, #reg-verifiedUsersContainer{
-     background-color: var(--placeholder-bg);
-      border:solid 1px #80808041;
-      border-radius:10px;
-      margin: 0 15px;
+     
+     
    } 
 
 
@@ -813,10 +811,13 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
 
     .reg-card {
-      
-      margin: 10px;
-      padding: 10px;
+      margin: 20px 5px;
+      padding: 10px 0px;
       cursor: pointer;
+      background-color: var(--placeholder-bg);
+      border:solid 1px #80808041;
+      border-radius:10px;
+      
     }
 
     table {
@@ -827,10 +828,8 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     th, td {
       padding: 10px;
       text-align: left;
+      font-size:12px!important;
     }
-   td{
-     border:solid 1px #9191911f;
-   }
     th {
       background-color:  #8080801f;
     }
@@ -841,22 +840,21 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
  /* Container for the buttons to ensure they align inline */
 .reg-button-container {
-  display: flex; /* Use flexbox */
+  text-align-last: center;
   justify-content: space-between; /* Spread buttons evenly */
-  gap: 0px; /* Add space between buttons */
 }
 
 /* Shared button styles */
 .reg-create-btn, .reg-toggle-btn, .reg-delete-btn {
-  margin-top:10px;
-  padding: 10px;
+  margin:5px 10px;
+  padding: 8px 0px;
   font-size: 14px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   background-color: #a9afb86d;
   color: var(--text-color);
-  width: 30%; /* Make buttons take up 30% of the container */
+  width: 25%; /* Make buttons take up 30% of the container */
   text-align: center;
 }
 
