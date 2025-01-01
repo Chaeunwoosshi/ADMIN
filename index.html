@@ -503,7 +503,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   height:100px;
   overflow:auto;
 }
-  #copyBtn, #generateBtn, #copyBtn3, #generateBtn3, #addEpisodeBtn{
+  #copyBtn, #generateBtn, #copyBtn3, #generateBtn3, #addEpisodeBtn, #removeTableBtn{
     display: block;
     margin:15px auto;
    border-radius:8px;
@@ -539,7 +539,6 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     bottom:-46px;
     left:120px;
     padding:5px 10px;
-    
     
   }
 
@@ -1465,6 +1464,7 @@ Stats</button>
 </div>
 <div id="movieCode" class="tabcontent">
   <!-- Content for Movie Code -->
+
      <div class="myinputs">
  <label for="thumbnailInput"></label>
   <input type="text" id="thumbnailInput" placeholder="Enter Thumbnail Link">
@@ -1474,6 +1474,8 @@ Stats</button>
  
   <label for="synopsisInput"></label>
   <textarea id="synopsisInput" placeholder="Synopsis"></textarea>
+  
+  <button id="removeTableBtn">Remove Table</button>
   
   <label for="castsInput"></label>
   <input type="text" id="castsInput" placeholder="Enter Cast(s)">
@@ -1851,7 +1853,6 @@ Stats</button>
 
   </div>
 
-
  <div class="content" id="others" style="display: none;">
      
   <div class="aboutAuthor">
@@ -1915,8 +1916,7 @@ Stats</button>
   </div>
 
 <script>
-
-// JavaScript
+  // JavaScript
     function showContent(page) {
       // Hide all content divs
       var contentDivs = document.querySelectorAll('.content');
@@ -2024,295 +2024,7 @@ function toggleDarkMode() {
   }
 }
 
-
-// JavaScript for Series Generator
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById('generateBtn').addEventListener('click', function() {
-    var thumbnailLink = document.getElementById('thumbnailInput').value;
-    var iframeLink = document.getElementById('iframeInput').value;
-    var synopsis = document.getElementById('synopsisInput').value;
-    var casts = document.getElementById('castsInput').value;
-    var director = document.getElementById('directorInput').value;
-    var release = document.getElementById('releaseInput').value;
-    var country = document.getElementById('countryInput').value;
-    
-    var tableCode = '<table class="blueTable">\n<tbody>\n';
-    tableCode += '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n';
-    tableCode += '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n';
-    tableCode += '<tr>\n<td>Release:</td>\n<td>' + release + '</td>\n</tr>\n';
-    tableCode += '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n';
-    tableCode += '</tbody>\n</table>';
-    
- var generatedCode = '<html>\n' +
-    '<img src="' + thumbnailLink + '"/>\n' +
-    '<iframe id="fullscreen-Button" class="lazyload" data-src="' + iframeLink + '" src="' + iframeLink + '" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
-    '<p>' + synopsis + '</p>\n' +
-    tableCode + '\n\n' +
-    '</html>'; // Add line break and spacing here
-
-    document.getElementById('codeOutput').value = generatedCode;
-  });
-
-  document.getElementById('copyBtn').addEventListener('click', function() {
-    var codeOutput = document.getElementById('codeOutput');
-    codeOutput.select();
-    document.execCommand('copy');
-    alert('Code copied to clipboard!');
-  });
-});
-
- var iframeCode ='<iframe class="lazyload" data-src="/" src="/" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>';
- 
-document.getElementById('addEpisodeBtn').addEventListener('click', function() {
-    var episodesDiv = document.getElementById('episodes');
-    var episodeDiv = document.createElement('div');
-    episodeDiv.classList.add('episode');
-    
-    var episodeCount = document.querySelectorAll('.episode').length + 1;
-    
-    var episodeInput = document.createElement('input');
-    episodeInput.type = 'text';
-    episodeInput.classList.add('episodeInput');
-    episodeInput.placeholder = 'Enter Episode ' + episodeCount;
-    
-    var removeBtn = document.createElement('button');
-    removeBtn.textContent = 'Remove';
-    removeBtn.classList.add('removeBtn');
-    
-    removeBtn.addEventListener('click', function() {
-        episodesDiv.removeChild(episodeDiv);
-    });
-    
-    episodeDiv.appendChild(episodeInput);
-    episodeDiv.appendChild(removeBtn);
-    
-    episodesDiv.appendChild(episodeDiv);
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Add event listener for the Generate Code button
-    document.getElementById('generateBtn').addEventListener('click', function() {
-        // Retrieve input values
-        var thumbnailLink = document.getElementById('thumbnailInput').value;
-        var iframeLink = document.getElementById('iframeInput').value;
-        var synopsis = document.getElementById('synopsisInput').value;
-        var casts = document.getElementById('castsInput').value;
-        var director = document.getElementById('directorInput').value;
-        var release = document.getElementById('releaseInput').value;
-        var country = document.getElementById('countryInput').value;
-
-
-var generatedCode = '<html>\n' +
-    '<img src="' + thumbnailLink + '"/>\n' +
-    '<iframe class="lazyload" id="fullscreen-Button" data-src="' + iframeLink + '" src="' + iframeLink + '" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
-    '<p>' + synopsis + '</p>\n' +
-    '<table class="blueTable">\n' +
-    '<tbody>\n' +
-    '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n' +
-    '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n' +
-    '<tr>\n<td>Release:</td>\n<td>' + release + '</td>\n</tr>\n' +
-    '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n' +
-    '</tbody>\n' +
-    '</table>\n' +
-    '<a class="watchbtn" href="javascript:void(0);" id="fullscreenButton">Watch Now</a>\n' +
-    '</html>';
-
-
-
-        // Display generated code in the textarea
-        document.getElementById('codeOutput').value = generatedCode;
-    });
-
-    // Add event listener for the Copy button
-    document.getElementById('copyBtn').addEventListener('click', function() {
-        var codeOutput = document.getElementById('codeOutput');
-        codeOutput.select();
-        document.execCommand('copy');
-        alert('Code copied to clipboard!');
-    });
-});
-
-document.getElementById('generateBtn3').addEventListener('click', function() {
-    var seriesThumbnail = document.getElementById('seriesThumbnailInput3').value;
-    var casts = document.getElementById('castsInput3').value;
-    var director = document.getElementById('directorInput3').value;
-    var releaseDate = document.getElementById('releaseInput3').value;
-    var country = document.getElementById('countryInput3').value;
-    var synopsis = document.getElementById('synopsisInput3').value;
-    var episodes = document.querySelectorAll('.episodeInput');
-    
-    var episodeList = '';
-    episodes.forEach(function(episode, index) {
-        episodeList += '<a href="" class="epi" data-src="' + episode.value + '">' + (index + 1) + '</a>';
-    });
-    
-    var tableCode = '<table class="blueTable">\n<tbody>\n';
-    tableCode += '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n';
-    tableCode += '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n';
-    tableCode += '<tr>\n<td>Release Date:</td>\n<td>' + releaseDate + '</td>\n</tr>\n';
-    tableCode += '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n';
-    tableCode += '</tbody>\n</table>';
-    
-var generatedCode = `<html>
-${iframeCode}
-<img src="${seriesThumbnail}"/>
-<p>${synopsis}</p>
-<table class="blueTable">
-<tbody>
-<tr>
-<td>Casts:</td> <td>${casts}</td>
-</tr>
-<tr>
-<td>Director:</td> <td>${director}</td>
-</tr>
-<tr>
-<td>Release Date:</td> <td>${releaseDate}</td>
-</tr>
-<tr>
-<td>Country:</td> <td>${country}</td>
-</tr>
-</tbody>
-</table>
-<div id="episodeList">${episodeList}</div>
-</html>`;
-
-   
-    document.getElementById('codeOutput3').value = generatedCode;
-});
-
-document.getElementById('copyBtn3').addEventListener('click', function() {
-    var codeOutput = document.getElementById('codeOutput3');
-    codeOutput.select();
-    document.execCommand('copy');
-    alert('Code copied to clipboard!');
-});
-
-// Function to open a specific tab
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-
-function toggleDropdown() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function selectOption(option) {
-  document.getElementById("myDropdown").classList.remove("show");
-  if (option === "seriesCode") {
-    document.getElementById("seriesCode").style.display = "block";
-    document.getElementById("movieCode").style.display = "none";
-    document.getElementById("dropdownTitle").innerHTML = 'Series Code <i class="fas fa-caret-down"></i>';
-    document.getElementById("postOption").style.display = "none";
-    document.getElementById("movieOption").style.display = "block";
-  } else if (option === "movieCode") {
-    document.getElementById("seriesCode").style.display = "none";
-    document.getElementById("movieCode").style.display = "block";
-    document.getElementById("dropdownTitle").innerHTML = 'Movie Code <i class="fas fa-caret-down"></i>';
-    document.getElementById("movieOption").style.display = "none";
-    document.getElementById("postOption").style.display = "block";
-  }
-}
-// Set default content to "Post Code"
-selectOption("seriesCode");
-
-
-//image Carousel
-(() => {
-  const images_list = [
-    {
-      "url": "https://www.html-code-generator.com/images/slider/1.png",
-      "alt": "",
-      "name": "image 1",
-      "link": ""
-    },
-    {
-      "url": "https://www.html-code-generator.com/images/slider/2.png",
-      "alt": "",
-      "name": "image 2",
-      "link": ""
-    },
-    {
-      "url": "https://www.html-code-generator.com/images/slider/3.png",
-      "alt": "",
-      "name": "image 3",
-      "link": ""
-    },
-    {
-      "url": "https://www.html-code-generator.com/images/slider/4.png",
-      "alt": "",
-      "name": "image 4",
-      "link": ""
-    },
-    {
-      "url": "https://www.html-code-generator.com/images/slider/5.png",
-      "alt": "",
-      "name": "image 5",
-      "link": ""
-    }
-  ];
-
-  let slider_id = document.querySelector("#hcg-slider-1");
-
-  let dots_div = "";
-  let images_div = "";
-  for (let i = 0; i < images_list.length; i++) {
-    let href = (images_list[i].link == "" ? "" : ' href="' + images_list[i].link + '"');
-    images_div += '<a' + href + ' class="hcg-slides animated"' + (i === 0 ? ' style="display:flex"' : '') + '>' +
-        '<img src="' + images_list[i].url + '" alt="' + images_list[i].name + '">' +
-        '</a>';
-    dots_div += '<a href="#" class="hcg-slide-dot' + (i === 0 ? ' dot-active' : '') + '" data-id="' + i + '"></a>';
-  }
-  slider_id.querySelector(".hcg-slider-body").innerHTML = images_div;
-  slider_id.querySelector(".hcg-slide-dot-control").innerHTML = dots_div;
-
-  let slide_index = 0;
-
-  const images = slider_id.querySelectorAll(".hcg-slides");
-  const dots = slider_id.querySelectorAll(".hcg-slide-dot");
-  const showSlides = () => {
-    if (slide_index > images.length - 1) {
-      slide_index = 0;
-    }
-    if (slide_index < 0) {
-      slide_index = images.length - 1;
-    }
-    for (let i = 0; i < images.length; i++) {
-      images[i].style.display = "none";
-      dots[i].classList.remove("dot-active");
-      if (i == slide_index) {
-        images[i].style.display = "flex";
-        dots[i].classList.add("dot-active");
-      }
-    }
-  };
-
-  const dot_click = event => {
-    event.preventDefault();
-    slide_index = event.target.dataset.id;
-    showSlides();
-  };
-
-  for (let i = 0; i < dots.length; i++) {
-    dots[i].addEventListener("click", dot_click, false);
-  }
-  setInterval(() => {
-    slide_index++;
-    showSlides();
-  }, 2000);
-})();
-        
-// Function to toggle the dashboard sidebar
+// Dashboard Sidebar Toggle
 function toggleDashboardSidebar() {
   var sidebar = document.getElementById("dashboardSidebar");
   var contentAreas = document.querySelectorAll(".content");
@@ -2330,10 +2042,7 @@ function toggleDashboardSidebar() {
   }
 }
 
-// Event listener for the menu button click
-document.getElementById("menuButton").addEventListener("click", toggleDashboardSidebar);
-
-// Function to close sidebar when clicking outside of it
+// Close Sidebar on Outside Click
 window.onclick = function(event) {
   var sidebar = document.getElementById("dashboardSidebar");
   var menuButton = document.getElementById("menuButton");
@@ -2346,105 +2055,176 @@ window.onclick = function(event) {
     });
   }
 }
-//video sliding
-const videos = document.querySelectorAll('.sliding-video iframe');
+</script>
+<script>
+// JavaScript for Movie Generator
 
-    videos.forEach(video => {
-        video.addEventListener('click', () => {
-            // Stop all videos
-            videos.forEach(v => {
-                if (v !== video) {
-                    v.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                }
-            });
-        });
-    });
+// DOMContentLoaded Event Listener
+document.addEventListener("DOMContentLoaded", function() {
+  // Flag to track whether to include the table
+  var includeTable = true;
 
- function toggleGrids() {
-        const grids = document.querySelector('.grids');
-        grids.classList.toggle('grids-2');
-        grids.classList.toggle('grids-3');
+  // Generate Code Button Click Event
+  document.getElementById('generateBtn').addEventListener('click', function() {
+    // Retrieve input values
+    var thumbnailLink = document.getElementById('thumbnailInput').value;
+    var iframeLink = document.getElementById('iframeInput').value;
+    var synopsis = document.getElementById('synopsisInput').value;
+    var casts = document.getElementById('castsInput').value;
+    var director = document.getElementById('directorInput').value;
+    var release = document.getElementById('releaseInput').value;
+    var country = document.getElementById('countryInput').value;
+
+    // Create table structure if needed
+    var tableCode = '';
+    if (includeTable) {
+      tableCode = '<table class="blueTable">\n<tbody>\n' +
+        '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n' +
+        '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n' +
+        '<tr>\n<td>Release:</td>\n<td>' + release + '</td>\n</tr>\n' +
+        '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n' +
+        '</tbody>\n</table>';
     }
- 
-const searchIcon = document.getElementById("searchIcon");
-const searchBar = document.getElementById("searchBar");
 
-searchIcon.addEventListener("click", function(event) {
-  event.stopPropagation(); // Prevent click event from propagating to document
-  searchBar.classList.toggle("active");
-});
+    // Generate HTML code
+    var generatedCode = '<html>\n' +
+      '<img src="' + thumbnailLink + '"/>\n' +
+      '<iframe id="fullscreen-Button" class="lazyload" data-src="' + iframeLink + '" src="' + iframeLink + '" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
+      '<p>' + synopsis + '</p>\n' +
+      tableCode + '\n\n' +
+      '<a class="watchbtn" href="javascript:void(0);" id="fullscreenButton">Watch Now</a>\n' +  // Always include this button
+      '</html>';
 
-document.getElementById("searchInput").addEventListener("input", function() {
-  const searchValue = this.value.toLowerCase();
-  const gridItems = document.querySelectorAll(".grid");
+    // Display generated code in the textarea
+    document.getElementById('codeOutput').value = generatedCode;
+  });
 
-  gridItems.forEach(function(item) {
-    const title = item.querySelector(".title").textContent.toLowerCase();
-    const subtitle = item.querySelector(".subtitle").textContent.toLowerCase();
-    const isVisible = title.includes(searchValue) || subtitle.includes(searchValue);
+  // Copy Button Click Event
+  document.getElementById('copyBtn').addEventListener('click', function() {
+    var codeOutput = document.getElementById('codeOutput');
+    codeOutput.select();
+    document.execCommand('copy');
+    alert('Code copied to clipboard!');
+  });
 
-    item.style.display = isVisible ? "block" : "none";
+  // Remove Table Button Click Event
+  document.getElementById('removeTableBtn').addEventListener('click', function() {
+    // Toggle the includeTable flag to exclude or include the table
+    includeTable = !includeTable;
+    alert('Table ' + (includeTable ? 'included' : 'removed') + ' from code generation.');
   });
 });
 
-// Add event listener to the document to collapse search bar when clicked outside
-document.addEventListener("click", function(event) {
-  if (!searchBar.contains(event.target)) {
-    searchBar.classList.remove("active");
-  }
+//Series Code Generator
+
+
+// Add Episode Button Click Event
+document.getElementById('addEpisodeBtn').addEventListener('click', function() {
+  var episodesDiv = document.getElementById('episodes');
+  var episodeDiv = document.createElement('div');
+  episodeDiv.classList.add('episode');
+
+  // Create episode input field and remove button
+  var episodeCount = document.querySelectorAll('.episode').length + 1;
+  var episodeInput = document.createElement('input');
+  episodeInput.type = 'text';
+  episodeInput.classList.add('episodeInput');
+  episodeInput.placeholder = 'Enter Episode ' + episodeCount;
+
+  var removeBtn = document.createElement('button');
+  removeBtn.textContent = 'Remove';
+  removeBtn.classList.add('removeBtn');
+
+  // Remove Episode Button Click Event
+  removeBtn.addEventListener('click', function() {
+    episodesDiv.removeChild(episodeDiv);
+  });
+
+  // Append episode input and remove button to episode div
+  episodeDiv.appendChild(episodeInput);
+  episodeDiv.appendChild(removeBtn);
+  episodesDiv.appendChild(episodeDiv);
+});
+
+// Generate Series Code Button Click Event
+document.getElementById('generateBtn3').addEventListener('click', function() {
+  // Retrieve input values
+  var seriesThumbnail = document.getElementById('seriesThumbnailInput3').value;
+  var casts = document.getElementById('castsInput3').value;
+  var director = document.getElementById('directorInput3').value;
+  var releaseDate = document.getElementById('releaseInput3').value;
+  var country = document.getElementById('countryInput3').value;
+  var synopsis = document.getElementById('synopsisInput3').value;
+
+  // Generate episode links
+  var episodes = document.querySelectorAll('.episodeInput');
+  var episodeList = '';
+  episodes.forEach(function(episode, index) {
+    episodeList += '<a href="" class="epi" data-src="' + episode.value + '">' + (index + 1) + '</a>';
+  });
+
+  // Create table structure
+  var tableCode = '<table class="blueTable">\n<tbody>\n' +
+    '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n' +
+    '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n' +
+    '<tr>\n<td>Release Date:</td>\n<td>' + releaseDate + '</td>\n</tr>\n' +
+    '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n' +
+    '</tbody>\n</table>';
+
+  // Generate HTML code
+  var generatedCode = '<html>\n' +
+    '<iframe class="lazyload" data-src="/" src="/" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
+    '<img src="' + seriesThumbnail + '"/>\n' +
+    '<p>' + synopsis + '</p>\n' +
+    tableCode + '\n' +
+    '<div id="episodeList">' + episodeList + '</div>\n' +
+    '</html>';
+
+  // Display generated code in the textarea
+  document.getElementById('codeOutput3').value = generatedCode;
+});
+
+// Copy Series Code Button Click Event
+document.getElementById('copyBtn3').addEventListener('click', function() {
+  var codeOutput = document.getElementById('codeOutput3');
+  codeOutput.select();
+  document.execCommand('copy');
+  alert('Code copied to clipboard!');
 });
 
 
-// Add an event listener to detect touch events
-document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, false);
 
-var startY;
-var pullDown = false;
 
-function handleTouchStart(event) {
-  // Record the starting position of the touch event
-  startY = event.touches[0].clientY;
-  pullDown = false;
+// Dropdown Toggle
+function toggleDropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function handleTouchMove(event) {
-  if (document.body.scrollTop === 0) {
-    pullDown = true;
-    // Check if the user is pulling down
-    var currentY = event.touches[0].clientY;
-    var diff = currentY - startY;
-    
-    if (diff > 50) { // Set a threshold for the pull-down distance
-      // Show the pull-down indicator and trigger the reload action
-      document.getElementById("pullDownIndicator").style.display = "block";
-      // Reload your content or perform any necessary action
-      // For example, window.location.reload() to reload the page
-    }
+// Dropdown Selection
+function selectOption(option) {
+  document.getElementById("myDropdown").classList.remove("show");
+  if (option === "seriesCode") {
+    document.getElementById("seriesCode").style.display = "block";
+    document.getElementById("movieCode").style.display = "none";
+    document.getElementById("dropdownTitle").innerHTML = 'Series Code <i class="fas fa-caret-down"></i>';
+    document.getElementById("postOption").style.display = "none";
+    document.getElementById("movieOption").style.display = "block";
+  } else if (option === "movieCode") {
+    document.getElementById("seriesCode").style.display = "none";
+    document.getElementById("movieCode").style.display = "block";
+    document.getElementById("dropdownTitle").innerHTML = 'Movie Code <i class="fas fa-caret-down"></i>';
+    document.getElementById("movieOption").style.display = "none";
+    document.getElementById("postOption").style.display = "block";
   }
 }
 
+// Set default content to "Post Code"
+selectOption("seriesCode");
 
 </script>
 
-  <script>
-    // JavaScript for tab functionality
-    const tabs = document.querySelectorAll('.tsn-tab');
-    const contents = document.querySelectorAll('.tsn-tab-content');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Remove active class from all tabs and content
-        tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => c.classList.remove('active'));
 
-        // Add active class to the clicked tab and corresponding content
-        tab.classList.add('active');
-        const target = tab.getAttribute('data-tab');
-        document.getElementById(target).classList.add('active');
-      });
-    });
-  </script>
   <script>
        function updateDateTime() {
       const dateElement = document.getElementById("date");
