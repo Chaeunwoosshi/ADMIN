@@ -764,126 +764,14 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       display: none;
     }
     
-    
+   #reg-pendingUsersContainer, #reg-verifiedUsersContainer{
+     background-color: var(--placeholder-bg);
+      border:solid 1px #80808041;
+      border-radius:10px;
+      margin: 0 15px;
+   } 
 
 
-#others{
-  padding:0;
-  margin:0;
-}
-
-.other-card{
-  margin-left:-12px;
-  padding:50px 0px 0px 0px;
-}
-.card {
-  margin: 0px 5px 0 5px;
-  width: 100%;
-  overflow: hidden;
-border: 1px solid #80808022;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-}
-
-.card-content {
-  padding: 5px 15px;
-  color: var(--text-color);
-  
-}
-
-.card-content p {
-  font-size: 14px;
-  color: var(--text-color);
-}
-
-.copy-btn {
-  padding: 3px 10px;
-  margin: 10px 0 10px 0;
-  background-color: #1a73e8;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-}
-
-.copy-btn:hover {
-  background-color: #45a049;
-}
-
-.copy-btn i {
-  margin-right: 5px;
-}
-
-.other-card h2{
-  margin-top:30px;
-  margin-left:20px;
-  font-size:20px;
-  color:var(--text-color);
-}
-
-    .order-container {
-      max-width: 600px;
-      width:87%;
-      margin: -60px 15px 50px 15px;
-      padding: 20px;
-      
-    }
-    .order-header {
-      text-align: center;
-      padding-bottom: 40px;
-    }
-    .order-header h2 {
-      margin: 20px 0;
-    }
-    .order-label {
-      display: block;
-      margin: 20px 0 5px;
-      font-weight: bold;
-        
-    }
-  .order-input, .order-select, .order-button {
-    width: 100%; /* Ensures full width */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #44444443;
-    color: var(--text-color);
-    background-color:transparent;
-    border-radius: 5px;
-    box-sizing: border-box; /* Includes padding and border in width calculation */
-    border: 1px solid transparent; /* Make sure there's space for the border */
-      background-clip: padding-box; /* Ensures the background stays inside the border */
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-      box-sizing: border-box;
-      color: var(--text-color);
-      background-color: var(--placeholder-bg);
-      outline: none;
-      transition: all 0.3s ease-in-out;
-  }
-
-    .order-button {
-      background-color: #1caf2d;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      margin:20px 0;
-    }
-    .order-button:hover {
-      background-color: #0056b3;
-    }
- 
-
-      .reg-container {
-      max-width: 1200px;
-      margin: 20px;
-      padding: 20px;
-      
-    }
 
     .reg-tabs {
       display: flex;
@@ -909,6 +797,7 @@ border: 1px solid #80808022;
     background-color:transparent;
       border-bottom:solid 1px var(--theme-color)!important;
       border-radius:0!important;
+      
     }
 
     .reg-status {
@@ -940,7 +829,7 @@ border: 1px solid #80808022;
       text-align: left;
     }
    td{
-     border:solid 1px #8080801f;
+     border:solid 1px #9191911f;
    }
     th {
       background-color:  #8080801f;
@@ -998,7 +887,7 @@ border: 1px solid #80808022;
     .reg-modal-content {
       position: fixed;
       margin: 0;
-      padding: 60px 55px;
+      padding: 60px 55px 60px 40px;
       background-color:var(--background-color);
       width: 100%;
       height:100vh;
@@ -1006,7 +895,8 @@ border: 1px solid #80808022;
     }
 
     .reg-modal-content img {
-      width: 70%;
+   
+      width: 80%;
       height:80%;
       border-radius: 8px;
     }
@@ -1050,7 +940,7 @@ border: 1px solid #80808022;
     /* About Author CSS */
     .aboutAuthor {
       text-align: center;
-      padding: 130px 0 10px 0;
+      padding: 50px 0 10px 0;
     }
 
     .aboutAuthor .mainAuthor {
@@ -1553,7 +1443,7 @@ Stats</button>
   </div>
  <div class="content" id="account" style="display: none;">
    
-     <h2 style="font-size:20px;margin:90px 0px 0px 20px">Registration Request</h2>
+     <h2 style="font-size:20px;margin:80px 0px 0px 20px">Registration Request</h2>
        
 <!-- Tabs Section -->
 <div class="reg-tabs">
@@ -1823,15 +1713,6 @@ Stats</button>
     }
   }
 </script>
-
-
-
-
-
-
-
-
-
 <script>
   // Switch between Pending and Verified Sections
   function switchTab(tabId, targetContainer, otherTabId, otherContainer) {
