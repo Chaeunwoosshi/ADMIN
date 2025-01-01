@@ -350,169 +350,69 @@ font-size: 20px;
       margin-bottom: 60px; /* Adjust this value to prevent content from being hidden behind the bottom menu */
     }
 
-      .carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        .carousel-item {
-            min-width: 100%; /* Show one item per screen */
-            height: 150px; /* Fixed height for images */
-            position: relative;
-        }
-        
-/* Hide the scrollbar */
-    scrollbar-width: none; /* For Firefox */
-}
+   #content-container{
+     padding:15px 10px;
+   }
 
-.carousel-item::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Edge */
-}
-/* Hide the scrollbar */
-    scrollbar-width: none; /* For Firefox */
-}
-
-.carousel-track::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Edge */
-}
-
-
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-        .carousel-title {
-           color:lightgrey;
-            position: absolute;
-            bottom: -5px;
-            left: 0px;
-            font-size: 14px;           
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .carousel-indicators {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            display: flex;
-        }
-        .indicator {
-            height: 5px;
-            width: 5px;
-            margin: 0 3px;
-            border-radius: 10%;
-            background-color: #a1a1a1;
-            cursor: pointer;
-        }
-        .indicator.active {
-            background-color: #1df147; /* Active indicator color */
-        }
-   
-   .category-section {
-    margin-bottom: 20px;
-}
-
-.category-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-    padding-left: 5px;
-}
-
-/* Change the horizontal-slider to a grid layout */
-.horizontal-slider {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
-    gap: 10px; /* Space between items */
-    margin-bottom: 20px;
-    padding: 0 10px; /* Optional padding for spacing */
-}
-
-/* Item styling for grid layout */
-.item {
-    width: 100%; /* Ensures each item fills its grid cell */
-    border: solid 1px var(--border-color);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    color: var(---text-color);
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Image inside the item */
-.item img {
-    width: 100%;
-    height: 150px; /* Fixed height */
-    object-fit: cover;
-    display: block;
-    border-bottom: 1px solid #333;
-    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-}
-
-/* Title styling */
-.item-title {
-    font-size: 12px;
-    padding: 6px;
-    text-align: center;
-    color: var(---text-color);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Mobile (up to 768px): 3 columns per row */
-@media (max-width: 768px) {
-    .horizontal-slider {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns per row on mobile */
-    }
-}
-
-/* For even smaller screens (up to 480px), you can adjust to 2 or 1 column if necessary */
-@media (max-width: 480px) {
-    .horizontal-slider {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns per row on mobile */
-    }
-}
-
-        .play-button {
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
+        #abefilmpost-search-container {
             display: flex;
             align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            gap: 5px;
+            margin-bottom: 20px;
         }
-        .play-button:before {
-            content: '▶';
-            color: #1df147; /* Green color for play icon */
-            font-size: 25px;
-            line-height: 40px;
-            margin-left:2px;
+        #abefilmpost-search-bar {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--placeholder-bg);
+            color: var(--text-color);
+            width: 60%; /* Search bar takes 60% of the width */
         }
-        .item:hover .play-button {
-            opacity: 1;
+        #abefilmpost-filter-dropdown, #abefilmpost-author-dropdown {
+            padding: 8px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            margin-top:-10px;
+            font-size: 12px;
+            border: 1px solid var(--border-color)!important;
+            border-radius: 5px;
+            background-color: var(--placeholder-bg)!important;
+            color: var(--text-color);
+            width: 20%; /* Filters take 20% of the width each */
         }
-        .item:hover img {
-            transform: scale(1.1); /* Zoom in on hover */
-            filter: brightness(0.5); /* Darken image on hover */
+        #abefilmpost-filter-dropdown {
+            text-transform: capitalize;
+            
         }
-        .item a {
-            text-decoration: none;
-            color: inherit;
+        .abefilmpost-movie-grid {
+          
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .abefilmpost-movie-card {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .abefilmpost-movie-card:hover {
+            transform: scale(1.05);
+        }
+        .abefilmpost-thumbnail {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        .abefilmpost-movie-info {
+            padding: 5px;
+            text-align: center;
+        }
+        .abefilmpost-title {
+            font-size: 12px;
+            margin: 2px 0;
+            font-weight:normal;
         }
         
         
@@ -1386,15 +1286,141 @@ Stats</button>
 <div class="content" id="home">
 
 <div id="content-container">
-    <div class="carousel" id="random-carousel">
-        <div class="carousel-track" id="random-slider">
-            <!-- Random items will be loaded here -->
-        </div>
-        <div class="carousel-indicators" id="carousel-indicators">
-            <!-- Indicator dots will be loaded here -->
-        </div>
+    <div id="abefilmpost-search-container">
+        <input type="text" id="abefilmpost-search-bar" placeholder="Search  by title...">
+        <select id="abefilmpost-filter-dropdown">
+            <option value="all">Genres</option>
+        </select>
+        <select id="abefilmpost-author-dropdown">
+            <option value="all">Authors</option>
+        </select>
     </div>
-    <!-- Dynamic content will be loaded here -->
+    <div class="abefilmpost-movie-grid" id="abefilmpost-movie-grid"></div>
+
+<script>
+    // Use unique variable names for Blogger-related elements
+    let bloggerPosts = []; // Store all posts from Blogger feed
+    let bloggerMovieGrid = document.getElementById('abefilmpost-movie-grid');
+    let bloggerFilterDropdown = document.getElementById('abefilmpost-filter-dropdown');
+    let bloggerAuthorDropdown = document.getElementById('abefilmpost-author-dropdown');
+    let bloggerSearchBar = document.getElementById('abefilmpost-search-bar');
+
+    // Recursive function to fetch all posts using JSONP
+    function fetchBloggerPosts(url) {
+        const script = document.createElement('script');
+        script.src = `${url}&callback=handleBloggerPosts`;
+        document.body.appendChild(script);
+    }
+
+    // Callback function to process Blogger posts
+    function handleBloggerPosts(json) {
+        const entries = json.feed.entry || [];
+        const genres = new Set();
+        const authors = new Set();
+
+        // Iterate through each post and store necessary details
+        entries.forEach(entry => {
+            let thumbnail = entry.media$thumbnail?.url || "https://via.placeholder.com/150";
+            if (thumbnail.includes('s72-c')) {
+                thumbnail = thumbnail.replace('s72-c', 's400');
+            }
+            const genre = entry.category ? entry.category.map(cat => cat.term.toLowerCase()) : [];
+            const author = entry.author[0].name.$t;
+
+            bloggerPosts.push({
+                title: entry.title.$t,
+                url: entry.link.find(link => link.rel === 'alternate').href,
+                thumbnail,
+                genre,
+                author
+            });
+
+            genre.forEach(g => genres.add(g));
+            authors.add(author);
+        });
+
+        populateBloggerFilterDropdown([...genres]);
+        populateBloggerAuthorDropdown([...authors]);
+
+        const nextLink = json.feed.link.find(link => link.rel === "next");
+        if (nextLink) {
+            fetchBloggerPosts(nextLink.href + "&alt=json-in-script");
+        } else {
+            renderBloggerPosts(bloggerPosts); // Once all posts are fetched, render them
+        }
+    }
+
+    // Populate genre filter dropdown
+    function populateBloggerFilterDropdown(genres) {
+        genres.sort().forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre;
+            option.textContent = capitalizeFirstLetter(genre);
+            bloggerFilterDropdown.appendChild(option);
+        });
+    }
+
+    // Populate author dropdown
+    function populateBloggerAuthorDropdown(authors) {
+        authors.sort().forEach(author => {
+            const option = document.createElement('option');
+            option.value = author.toLowerCase();
+            option.textContent = author;
+            bloggerAuthorDropdown.appendChild(option);
+        });
+    }
+
+    // Capitalize first letter of genre (or any string)
+    function capitalizeFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // Render Blogger posts as movie cards
+    function renderBloggerPosts(posts) {
+        bloggerMovieGrid.innerHTML = '';
+        posts.forEach(post => {
+            const movieCard = document.createElement('div');
+            movieCard.className = 'abefilmpost-movie-card';
+            movieCard.innerHTML = `
+                <a href="${post.url}" target="_blank">
+                    <img class="abefilmpost-thumbnail" src="${post.thumbnail}" alt="${post.title}">
+                </a>
+                <div class="abefilmpost-movie-info">
+                    <h3 class="abefilmpost-title">${post.title}</h3>
+                </div>
+            `;
+            bloggerMovieGrid.appendChild(movieCard);
+        });
+    }
+
+    // Apply filters (genre, author, and search query) to Blogger posts
+    function applyBloggerFilters() {
+        const query = bloggerSearchBar.value.toLowerCase();
+        const genreFilter = bloggerFilterDropdown.value;
+        const authorFilter = bloggerAuthorDropdown.value;
+
+        const filteredPosts = bloggerPosts.filter(post => {
+            const matchesSearch = post.title.toLowerCase().includes(query);
+            const matchesGenre = genreFilter === "all" || post.genre.includes(genreFilter);
+            const matchesAuthor = authorFilter === "all" || post.author.toLowerCase() === authorFilter;
+            return matchesSearch && matchesGenre && matchesAuthor;
+        });
+
+        renderBloggerPosts(filteredPosts);
+    }
+
+    // Add event listeners
+    bloggerSearchBar.addEventListener('input', applyBloggerFilters);
+    bloggerFilterDropdown.addEventListener('change', applyBloggerFilters);
+    bloggerAuthorDropdown.addEventListener('change', applyBloggerFilters);
+
+    // Start fetching all Blogger posts
+    const initialBloggerFeedUrl = "https://abefilmstreamtv.blogspot.com/feeds/posts/summary?alt=json-in-script&max-results=150";
+    fetchBloggerPosts(initialBloggerFeedUrl);
+</script>
+
+    </div>
+
 </div>
 
 <br/>
@@ -2400,144 +2426,7 @@ function handleTouchMove(event) {
 
 
 </script>
-<script>
-    const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.blogger.com%2Ffeeds%2F3434317895581666633%2Fposts%2Fdefault&api_key=f1wz56jkpxrjxaruc4pum1xymrkfa8fxodu8i9xh&count=99';
 
-    async function fetchRSSData() {
-        try {
-            const response = await fetch(rssUrl);
-            const data = await response.json();
-            displayRandomItems(data.items);
-            const orderedCategories = ['Short Drama', 'Series', 'Movie']; // Order categories here
-            displayCategories(data.items, orderedCategories);
-        } catch (error) {
-            console.error('Error fetching RSS feed:', error);
-        }
-    }
-
-    function extractImageFromContent(content) {
-        const imgTag = content.match(/<img.*?src="(.*?)"/);
-        return imgTag ? imgTag[1] : 'https://via.placeholder.com/100x150'; // Fallback image with appropriate size
-    }
-
-    function displayRandomItems(items) {
-        const randomSlider = document.getElementById('random-slider');
-        const indicatorsContainer = document.getElementById('carousel-indicators');
-        const shuffledItems = items.sort(() => 0.5 - Math.random()); // Shuffle items
-        const randomItems = shuffledItems.slice(0, 5); // Get 5 random items
-
-        randomItems.forEach((item, index) => {
-            const sliderItem = document.createElement('div');
-            sliderItem.className = 'carousel-item';
-
-            const img = document.createElement('img');
-            img.src = extractImageFromContent(item.content || item.description);
-            sliderItem.appendChild(img);
-
-            const title = document.createElement('div');
-            title.className = 'carousel-title';
-            title.textContent = item.title;
-            sliderItem.appendChild(title);
-
-            randomSlider.appendChild(sliderItem);
-
-            // Create indicators
-            const indicator = document.createElement('div');
-            indicator.className = 'indicator' + (index === 0 ? ' active' : '');
-            indicator.dataset.index = index; // Set the index for the indicator
-            indicatorsContainer.appendChild(indicator);
-        });
-
-        // Automatic slide functionality
-        let currentIndex = 0;
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % randomItems.length;
-            updateCarousel(currentIndex);
-        }, 3000); // Change slide every 3 seconds
-    }
-
-    function updateCarousel(index) {
-        const carouselTrack = document.getElementById('random-slider');
-        const indicators = document.querySelectorAll('.indicator');
-
-        // Move carousel to the current index
-        const offset = index * 100; // 100% for one item
-        carouselTrack.style.transform = `translateX(-${offset}%)`;
-
-        // Update indicators
-        indicators.forEach((indicator, idx) => {
-            indicator.classList.toggle('active', idx === index);
-        });
-    }
-
-    function displayCategories(items, orderedCategories) {
-        const container = document.getElementById('content-container');
-        const categories = {};
-
-        items.forEach(item => {
-            item.categories.forEach(category => {
-                if (!categories[category]) {
-                    categories[category] = [];
-                }
-                categories[category].push(item);
-            });
-        });
-
-        orderedCategories.forEach(category => {
-            if (categories[category]) {
-                const categorySection = document.createElement('div');
-                categorySection.className = 'category-section';
-
-                const categoryTitle = document.createElement('div');
-                categoryTitle.className = 'category-title';
-                categoryTitle.textContent = category;
-                categorySection.appendChild(categoryTitle);
-
-                const slider = document.createElement('div');
-                slider.className = 'horizontal-slider';
-
-                categories[category].forEach(item => {
-                    const sliderItem = document.createElement('div');
-                    sliderItem.className = 'item';
-
-                    const link = document.createElement('a');
-                    link.href = item.link;
-
-                    const img = document.createElement('img');
-                    img.src = extractImageFromContent(item.content || item.description);
-                    link.appendChild(img);
-
-                    const playButton = document.createElement('div');
-                    playButton.className = 'play-button';
-                    link.appendChild(playButton);
-
-                    const title = document.createElement('div');
-                    title.className = 'item-title';
-                    title.textContent = item.title;
-                    link.appendChild(title);
-
-                    sliderItem.appendChild(link);
-                    slider.appendChild(sliderItem);
-                });
-
-                categorySection.appendChild(slider);
-                container.appendChild(categorySection);
-            }
-        });
-    }
-
-    // Change header background on scroll
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        if (window.scrollY > 100) { // Change 100 to the desired scroll height
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    fetchRSSData();
-</script>
   <script>
     // JavaScript for tab functionality
     const tabs = document.querySelectorAll('.tsn-tab');
