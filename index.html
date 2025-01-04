@@ -1407,7 +1407,7 @@ Stats</button>
   <label class="credential-label" for="category">Plan</label>
   <select class="credential-select" id="category" name="category" required>
     <option value="1 Day">1 Day (Basic - Php50)</option>
-    <option value="1 Week">1 Week (Standard - Php150)</option>
+    <option value="1 Month">1 Month (Standard - Php199)</option>
     <option value="Lifetime">Lifetime (Special - Php299)</option>
     <option value="Trial">Trial</option>
   </select>
@@ -2268,7 +2268,7 @@ inputsToValidate.forEach(({ inputId, regex }) => {
 
         // Filter accounts based on category
         if (currentCategory === 'Short Term') {
-          filteredAccounts = data.filter(account => account.category === '1 Day' || account.category === '1 Week');
+          filteredAccounts = data.filter(account => account.category === '1 Day' || account.category === '1 Month');
         } else {
           filteredAccounts = data.filter(account => account.category === currentCategory);
         }
@@ -2300,8 +2300,8 @@ inputsToValidate.forEach(({ inputId, regex }) => {
           let price = 0;
           if (account.category === "1 Day") {
             price = 50.0;
-          } else if (account.category === "1 Week") {
-            price = 150.0;
+          } else if (account.category === "1 Month") {
+            price = 199.0;
           } else if (account.category === "Lifetime") {
             price = 299.0;
           } else if (account.category === "Trial") {
@@ -2426,58 +2426,61 @@ https://tinyurl.com/abefilmofficial`;
       .catch(error => console.error('Error editing account:', error));
   };
 
-  // Handle the form submission to create or update accounts
-  accountForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const category = categorySelect.value;
-    const email = document.getElementById('email').value; // Add email from the form
-    let expirationTime = null;
-    let price = null;
+// Handle the form submission to create or update accounts
+accountForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const category = categorySelect.value;
+  const email = document.getElementById('email').value; // Add email from the form
+  let expirationTime = null;
+  let price = null;
 
-    // Handle expiration time and price based on selected category
-    if (category === 'Trial') {
-      expirationTime = expirationTimeInput.value;
-      price = "₱0"; // Price for Trial plan
-    } else if (category === '1 Day') {
-      expirationTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(); // 1 day from now
-      price = "₱50"; // Price for 1 Day
-    } else if (category === '1 Week') {
-      expirationTime = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(); // 1 week from now
-      price = "₱150"; // Price for 1 Week
-    } else if (category === 'Lifetime') {
-      expirationTime = null; // Lifetime has no expiration
-      price = "₱299"; // Price for Lifetime
-    }
+  // Handle expiration time and price based on selected category
+  if (category === 'Trial') {
+    expirationTime = expirationTimeInput.value;
+    price = "₱0"; // Price for Trial plan
+  } else if (category === '1 Day') {
+    expirationTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(); // 1 day from now
+    price = "₱50"; // Price for 1 Day
+  } else if (category === '1 Month') {
+    expirationTime = new Date(); // Use the previously declared expirationTime
+    expirationTime.setMonth(expirationTime.getMonth() + 1); // Adds 1 month from now
+    expirationTime = expirationTime.toISOString(); // Convert to ISO string
+    price = "₱199"; // Price for 1 Month
+  } else if (category === 'Lifetime') {
+    expirationTime = null; // Lifetime has no expiration
+    price = "₱299"; // Price for Lifetime
+  }
 
-    if (editingAccountId) {
-      fetch(`${apiUrl}/${editingAccountId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, category, expirationTime, price, email }),
+  // Handle form submission based on whether the account is being edited or created
+  if (editingAccountId) {
+    fetch(`${apiUrl}/${editingAccountId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password, category, expirationTime, price, email }),
+    })
+      .then(() => {
+        alert('Account updated successfully!');
+        editingAccountId = null;
+        accountForm.reset();
+        fetchAccounts();
       })
-        .then(() => {
-          alert('Account updated successfully!');
-          editingAccountId = null;
-          accountForm.reset();
-          fetchAccounts();
-        })
-        .catch(error => console.error('Error updating account:', error));
-    } else {
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, category, expirationTime, price, email }),
+      .catch(error => console.error('Error updating account:', error));
+  } else {
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password, category, expirationTime, price, email }),
+    })
+      .then(() => {
+        alert('Account added successfully!');
+        accountForm.reset();
+        fetchAccounts();
       })
-        .then(() => {
-          alert('Account added successfully!');
-          accountForm.reset();
-          fetchAccounts();
-        })
-        .catch(error => console.error('Error:', error));
-    }
-  });
+      .catch(error => console.error('Error:', error));
+  }
+});
 
   // Example deleteAccount function without confirmation
   const deleteAccount = (accountId) => {
