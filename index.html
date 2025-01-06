@@ -992,18 +992,20 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       margin-bottom:100px;
     }
     .note-item {
-      background: var(--placeholder-bg);
+      background:#0080000d;
       margin-bottom: 10px;
       padding: 10px 15px 3px 15px;
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       position: relative;
+      border:solid 1px #0080002e;
     }
     .note-title {
       margin: 0;
       font-weight: bold;
-      color:var(--text-color);
-      width:80%;
+      color:#199919;
+      opacity:0.8;
+      width:78%;
     }
     .note-date {
       font-size: 0.9em;
@@ -1013,25 +1015,25 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
     .note-actions {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 5px;
+      right: 5px;
       display: flex;
       gap: 10px;
     }
-    .note-actions i {
-      font-size: 18px;
-      cursor: pointer;
-      background:var(--placeholder-bg);
-      padding:5px;
-      border-radius:10px;
-      opacity:0.8;
-    }
-    .fa-edit{
-      color: #5b85ac;
-    }
-    .fa-check{
-      color:#5da986;
-    }
+
+  .edit-button{
+    border-radius:3px;
+    padding:3px 5px;
+    color:crimson;
+    background:#dc143c38;
+  }
+  .done-button{
+  border-radius:3px;
+    padding:3px 5px;
+   color:deepskyblue;
+   background:#00bfff3c;
+  }
+    
     .note-floating-btn {
       position: fixed;
       bottom: 100px;
@@ -1805,7 +1807,8 @@ Uploads</button>
   </div>
 
  <div class="content" id="others" style="display: none;">
-     
+    
+ <h4 style="margin:60px 15px 10px 15px;">Pending Uploads</h4>    
 <div class="note-container" id="note-container">
   <!-- Notes will be added here -->
 </div>
@@ -1946,14 +1949,15 @@ function renderNote(note) {
 
   const actions = document.createElement('div');
   actions.className = 'note-actions';
-  const editButton = document.createElement('i');
-  editButton.className = 'fas fa-edit';
-  editButton.title = 'Edit';
+
+  const editButton = document.createElement('button');
+  editButton.className = 'edit-button';
+  editButton.textContent = 'Edit';
   editButton.onclick = () => editNote(note);
 
-  const doneButton = document.createElement('i');
-  doneButton.className = 'fas fa-check';
-  doneButton.title = 'Delete';
+  const doneButton = document.createElement('button');
+  doneButton.className = 'done-button';
+  doneButton.textContent = 'Done';
   doneButton.onclick = () => deleteNote(note.id);
 
   actions.appendChild(editButton);
@@ -1965,6 +1969,7 @@ function renderNote(note) {
 
   notesContainer.appendChild(noteElement);
 }
+
 
 // Initialize app by fetching notes
 fetchNotes();
