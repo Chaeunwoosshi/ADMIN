@@ -517,7 +517,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   height:100px;
   overflow:auto;
 }
-  #copyBtn, #generateBtn, #copyBtn3, #generateBtn3, #addEpisodeBtn, #removeTableBtn{
+  #copyBtn, #generateBtn, #copyBtn3, #generateBtn3, #addEpisodeBtn, #removeTableBtn, #removeSynopsisBtn {
     display: block;
     margin:15px auto;
    border-radius:8px;
@@ -531,6 +531,10 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border: none;
     cursor: pointer;
   }
+  #removeSynopsisBtn{
+    margin-top:5px;
+  }
+
 .removeBtn{
   display: block;
    margin:0px auto 10px auto;
@@ -802,22 +806,11 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     Defer(blogUrl + 'feeds/comments/default?alt=json-in-script&callback=statsCmt', 'sts-cmt');
   </script>
 
-  <div class="key-container">
- <h3 class="key-header">KEY GENERATOR</h3>
-    <button id="key-generate-button" class="key-button" onclick="keyGenerate()">Generate Key</button>
-    <button id="key-copy-button" class="key-button" onclick="keyCopy()"><i class="fa fa-copy"></i></button>
-    <div id="key-display" class="key-display">Click the button to generate a key</div>
-
-  </div>
-
 
 
 </li>
-  <div class="content">
-    <!-- Other content of the page can go here -->
-  </div>
+ 
           
-        </li>
 
       </ul>
       
@@ -1049,11 +1042,13 @@ Updates</button>
   
   <label for="iframeInput"></label>
   <input type="text" id="iframeInput" placeholder="Enter IFrame Embed Link">
- 
+  <button id="removeSynopsisBtn">Remove Synopsis</button>
   <label for="synopsisInput"></label>
   <textarea id="synopsisInput" placeholder="Synopsis"></textarea>
   
-  <button id="removeTableBtn">Remove Table</button>
+  
+    <button id="removeTableBtn">Remove Other Details</button>
+  
   
   <label for="castsInput"></label>
   <input type="text" id="castsInput" placeholder="Enter Cast(s)">
@@ -1228,62 +1223,64 @@ window.onclick = function(event) {
 </script>
 <script>
 // JavaScript for Movie Generator
-
-// DOMContentLoaded Event Listener
 document.addEventListener("DOMContentLoaded", function() {
-  // Flag to track whether to include the table
-  var includeTable = true;
+    var includeTable = true;
+    var includeSynopsis = true; // Flag for showing/hiding synopsis
 
-  // Generate Code Button Click Event
-  document.getElementById('generateBtn').addEventListener('click', function() {
-    // Retrieve input values
-    var thumbnailLink = document.getElementById('thumbnailInput').value;
-    var iframeLink = document.getElementById('iframeInput').value;
-    var synopsis = document.getElementById('synopsisInput').value;
-    var casts = document.getElementById('castsInput').value;
-    var director = document.getElementById('directorInput').value;
-    var release = document.getElementById('releaseInput').value;
-    var country = document.getElementById('countryInput').value;
+    document.getElementById('generateBtn').addEventListener('click', function() {
+      var thumbnailLink = document.getElementById('thumbnailInput').value;
+      var iframeLink = document.getElementById('iframeInput').value;
+      var synopsis = document.getElementById('synopsisInput').value;
+      var casts = document.getElementById('castsInput').value;
+      var director = document.getElementById('directorInput').value;
+      var release = document.getElementById('releaseInput').value;
+      var country = document.getElementById('countryInput').value;
 
-    // Create table structure if needed
-    var tableCode = '';
-    if (includeTable) {
-      tableCode = '<table class="blueTable">\n<tbody>\n' +
-        '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n' +
-        '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n' +
-        '<tr>\n<td>Release:</td>\n<td>' + release + '</td>\n</tr>\n' +
-        '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n' +
-        '</tbody>\n</table>';
-    }
+      var tableCode = '';
+      if (includeTable) {
+        tableCode = '<table class="blueTable">\n<tbody>\n' +
+          '<tr>\n<td>Casts:</td>\n<td>' + casts + '</td>\n</tr>\n' +
+          '<tr>\n<td>Director:</td>\n<td>' + director + '</td>\n</tr>\n' +
+          '<tr>\n<td>Release:</td>\n<td>' + release + '</td>\n</tr>\n' +
+          '<tr>\n<td>Country:</td>\n<td>' + country + '</td>\n</tr>\n' +
+          '</tbody>\n</table>';
+      }
 
-    // Generate HTML code
-    var generatedCode = '<html>\n' +
-      '<img src="' + thumbnailLink + '"/>\n' +
-      '<iframe id="fullscreen-Button" class="lazyload" data-src="' + iframeLink + '" src="' + iframeLink + '" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
-      '<p>' + synopsis + '</p>\n' +
-      tableCode + '\n\n' +
-      '<a class="watchbtn" href="javascript:void(0);" id="fullscreenButton">Watch Now</a>\n' +  // Always include this button
-      '</html>';
+      var synopsisCode = '';
+      if (includeSynopsis) {
+        synopsisCode = '<p id="synopsis">' + synopsis + '</p>\n';
+      }
 
-    // Display generated code in the textarea
-    document.getElementById('codeOutput').value = generatedCode;
+      var generatedCode = '<html>\n' +
+        '<img src="' + thumbnailLink + '"/>\n' +
+        '<iframe id="fullscreen-Button" class="lazyload" data-src="' + iframeLink + '" src="' + iframeLink + '" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>\n' +
+        synopsisCode +  // Add the synopsis code
+        tableCode + '\n\n' +
+        '<a class="watchbtn" href="javascript:void(0);" id="fullscreenButton">Watch Now</a>\n' +
+        '</html>';
+
+      document.getElementById('codeOutput').value = generatedCode;
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      var codeOutput = document.getElementById('codeOutput');
+      codeOutput.select();
+      document.execCommand('copy');
+      alert('Code copied to clipboard!');
+    });
+
+    document.getElementById('removeTableBtn').addEventListener('click', function() {
+      includeTable = !includeTable;
+      alert('Table ' + (includeTable ? 'included' : 'removed') + ' from code generation.');
+    });
+
+    // Remove or add the synopsis
+    document.getElementById('removeSynopsisBtn').addEventListener('click', function() {
+      includeSynopsis = !includeSynopsis;
+      alert('Synopsis ' + (includeSynopsis ? 'included' : 'removed') + ' from code generation.');
+    });
+
   });
-
-  // Copy Button Click Event
-  document.getElementById('copyBtn').addEventListener('click', function() {
-    var codeOutput = document.getElementById('codeOutput');
-    codeOutput.select();
-    document.execCommand('copy');
-    alert('Code copied to clipboard!');
-  });
-
-  // Remove Table Button Click Event
-  document.getElementById('removeTableBtn').addEventListener('click', function() {
-    // Toggle the includeTable flag to exclude or include the table
-    includeTable = !includeTable;
-    alert('Table ' + (includeTable ? 'included' : 'removed') + ' from code generation.');
-  });
-});
 
 //Series Code Generator
 
