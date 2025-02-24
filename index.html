@@ -23,6 +23,7 @@
       --menu-colorbg:#e1e1e1 ;
       --theme-color:#0d7e2e;
       --text-color: #5a5a5a;
+      --navtext-color:#1d1d1d;
       --button-background-color: #17c349e3;
       --button-text-color: #fff;
       --table-border-color: #ccc;
@@ -43,6 +44,7 @@
       --theme-color:#12d24a;
       --menu-colorbg:#191e2a;
       --text-color: #cecece;
+      --navtext-color:#e4e4e4;
       --button-background-color: #0056b3;
       --table-border-color: #666;
       --table-header-color: #444;
@@ -275,25 +277,40 @@ font-size: 20px;
   .fa-adjust{
     color:var(--toggle-icon);
   }
-    .bottom-menu {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-     border-top:1px solid var(--border-color);
-      background-color: var(--menu-colorbg);
-      padding: 10px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      z-index: 999; /* Ensure bottom menu is above other content */
-    }
+   
+   .bottom-menu {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%); /* Center the menu horizontally */
+    text-align: center;
+    width: 75%;
+    border-radius: 30px;
+background:var(--background-color), 0.2;
+box-shadow:
+0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter:
+blur( 4px );
+-webkit-backdrop-filter:
+blur( 4px );
+border-radius:
+10px;
+border:
+1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 10px;
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 35px; /* Space between buttons */
+    align-items: center;
+    z-index: 999; /* Ensure bottom menu is above other content */
+}
+
 
     .bottom-menu button {
       border: none;
       outline:none;
       background-color: transparent;
-      color:var(--text-color);
+      color:var(--navtext-color);
       font-size: 10px;
       display: flex;
       flex-direction: column;
@@ -460,7 +477,7 @@ color: var(--text-color);
     padding:10px;
     overflow:auto;
    width:93%;
-    margin: 10px auto; /* Center the textarea */
+    margin: 0px auto 10px auto; /* Center the textarea */
     border-radius: 5px;
     border: 1px solid rgba(235,235,235,0.1);
 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -470,7 +487,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     background-color: var(--placeholder-bg);
     outline:none;
   }
-.input.credential-input:hover, .order-input:hover, textarea:hover, input[type="text"]:hover{
+ textarea:hover, input[type="text"]:hover{
       animation: borderRotate 2s linear infinite;
       border-image-source: linear-gradient(90deg, transparent, #ff0000, transparent);
       border-image-slice: 1;
@@ -540,17 +557,11 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding:5px 10px;
     
   }
-
-
 .input-container {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
-@media screen and (max-width: 600px) {
-  .input-container {
-    height:300px;
-  }
-}
+
 .error-indicator {
   display: none;
   position: absolute;
@@ -663,276 +674,6 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   display: block;
 }
 
-
-   .credential-form h2{
-     font-size: 20px;
-     margin-bottom:30px;
-   }
-       
-    .credential-form {
-      padding: 20px;
-      width: 88%;
-      margin-bottom: 20px;
-      background: transparent;
-    }
-    .credential-label {
-      display: block;
-      margin-bottom: 8px;
-      background: transparent;
-    }
-    .credential-input, .credential-select {
-      width: 94%;
-      padding: 10px;
-      margin-bottom: 16px;
-      border-radius: 4px;
-      border: none;
-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-   background-color: var(--placeholder-bg);
-   color:var(--text-color);
-    }
-       .credential-select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 30px;
-      border-radius: 4px;
-      border: none;
-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-   background-color: var(--placeholder-bg);
-   color:var(--text-color);
-    }
-.credential-input:focus{
-  outline:none;
-}
-
-
-    .credential-button {
-      width: 100%;
-      padding: 10px;
-      background-color: #1caf2d;
-      color: white;
-      border: none;
-      margin-top:5px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .credential-button:hover {
-      background-color: #0056b3;
-    }
-    .credential-tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2px;
-    }
-    .credential-tab {
-      margin: 0 10px;
-      padding: 10px 10px;
-      cursor: pointer;
-    }
-    .credential-tab.active {
-      border-bottom: 1px solid #25cb62;
-      color: var(--text-color);
-    }
-    .credential-account-list {
-      width: 100%;
-    }
-    .credential-account-list ul {
-      list-style-type: none;
-      padding: 20px;
-      min-height: 100px;
-    }
-    .credential-account-item {
-      padding: 10px;
-      margin: 5px 0;
-      background-color: var(--placeholder-bg);
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      border: 1px solid rgba(60,60,60,0.1);
-    }
-    .credential-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0px;
-    }
-    .credential-actions button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    .credential-actions button img {
-      width: 20px;
-    }
-    .credential-hidden {
-      display: none;
-    }
-    
-   #reg-pendingUsersContainer, #reg-verifiedUsersContainer{
-     
-     
-   } 
-
-
-
-    .reg-tabs {
-      display: flex;
-      justify-content:left;
-      margin-bottom: 20px;
-      margin-left:15px;
-    }
-
-    .reg-tab {
-      margin: 30px 10px 5px 5px;
-      background-color:transparent;
-      padding: 10px 5px;
-      cursor: pointer;
-      font-size:16px;
-      color:var(--text-color);
-    }
-    button{
-    border:none!important;
-    Outline:none!important;
-  }
-
-    .reg-tab.reg-active {
-    background-color:transparent;
-      border-bottom:solid 1px var(--theme-color)!important;
-      border-radius:0!important;
-      
-    }
-
-    .reg-status {
-      font-weight: bold;
-    }
-
-    .reg-pending {
-      color: #f44336;
-    }
-
-    .reg-verified {
-      color: #4CAF50;
-    }
-
-    .reg-card {
-      margin: 20px 5px;
-      padding: 10px 0px;
-      cursor: pointer;
-      background-color: var(--placeholder-bg);
-      border:solid 1px #80808041;
-      border-radius:10px;
-      
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: left;
-      font-size:12px!important;
-    }
-    th {
-      background-color:  #8080801f;
-    }
-    @media screen and (max-width: 768px) {
-      table, th, td {
-        font-size: 14px;
-      }
-
- /* Container for the buttons to ensure they align inline */
-.reg-button-container {
-  text-align-last: center;
-  justify-content: space-between; /* Spread buttons evenly */
-}
-
-/* Shared button styles */
-.reg-create-btn, .reg-toggle-btn, .reg-delete-btn {
-  margin:5px 10px;
-  padding: 8px 0px;
-  font-size: 14px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #a9afb86d;
-  color: var(--text-color);
-  width: 25%; /* Make buttons take up 30% of the container */
-  text-align: center;
-}
-
-
-    .reg-copyable {
-      cursor: pointer;
-      color:deepskyblue;
-    }
-
-    .reg-hidden {
-      display: none;
-    }
-
-    /* Modal Styles */
-    .reg-modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.0);
-      z-index:99999999999999999;
-    }
-
-    .reg-modal-content {
-      position: fixed;
-      margin: 0;
-      padding: 60px 55px 60px 40px;
-      background-color:var(--background-color);
-      width: 100%;
-      height:100vh;
-      max-width: 500px;
-    }
-
-    .reg-modal-content img {
-   
-      width: 80%;
-      height:80%;
-      border-radius: 8px;
-    }
-
-    .reg-close {
-      position:fixed;
-      top:15px;
-      right:30px;
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .reg-close:hover,
-    .reg-close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-/* Position the badge (notification dot) */
-.badge {
-  background-color: red; /* Optional background color */
-  color: white;
-  padding: 2px 6px;
-  border-radius: 8px;
-  font-size: 10px;
-  position: absolute;
-  top: -5px; /* Adjust position */
-  right: -5px;
-}
-
- 
-    
-
     /* Website Stats */
     .statsHeading {
       text-align: center;
@@ -989,170 +730,6 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
    margin-right:5px; 
   }
   
- 
-    .note-container {
-      padding: 15px;
-      margin-bottom:100px;
-    }
-    .note-item {
-      background:#0080000d;
-      margin-bottom: 10px;
-      padding: 10px 15px 3px 15px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: relative;
-      border:solid 1px #0080002e;
-    }
-    .note-title {
-      margin: 0;
-      font-weight: bold;
-      color:#199919;
-      opacity:0.8;
-      width:78%;
-    }
-    .note-date {
-      font-size: 0.9em;
-      color: var(--text-color);
-      margin-top: 10px;
-      opacity:0.5;
-    }
-    .note-actions {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      display: flex;
-      gap: 10px;
-    }
-
-  .edit-button{
-    border-radius:3px;
-    padding:3px 5px;
-    color:crimson;
-    background:#dc143c38;
-  }
-  .done-button{
-  border-radius:3px;
-    padding:3px 5px;
-   color:deepskyblue;
-   background:#00bfff3c;
-  }
-    
-    .note-floating-btn {
-      position: fixed;
-      bottom: 100px;
-      right: 20px;
-      background: green;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .note-form-container {
-      position: fixed;
-      bottom: -100%;
-      left: 0;
-      z-index:999999;
-      width: 100%;
-      background: var(--background-color);
-      padding: 15px;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-      transition: bottom 0.3s ease;
-    }
-    .note-form-container.active {
-      bottom: 0;
-    }
-    .note-form-container input {
-      width: 92%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #cccccc7e;
-      border-radius: 5px;
-    }
-    .note-form-container button {
-      width: 92%;
-      padding: 10px;
-      background: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    
-    
-    .note-form-container .close-btn {
-  width: 92%;
-  padding: 10px;
-  background: #f44336;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-size: 16px;
-}
-
-.note-form-container .close-btn:hover {
-  background: #e53935;
-}
-
-     .balance-card {
-             text-align:center;
-             align-items:center;
-            margin:0 auto 30px auto;
-            background-color: var(--placeholder-bg);
-            padding: 20px 20px 10px 20px;
-            width:79%;
-            border-radius: 10px;
-            text-align: center;
-            border:1px solid #80808035;
-        }
-        .balance-card h1 {
-            font-size: 16px;
-            margin: 0px;
-            font-weight:normal;
-        }
-        .balance-card #balance-display {
-            font-size: 25px;
-            font-weight:bold;
-            margin:20px;
-        }
-        .gcash{
-        text-align:left;
-        font-size:10px;
-        margin-left:8px;
-        }
-        
-        .gcash svg{
-          margin-right:3px;
-        }
-
-
-   .app-icon {
-      width: 20px;
-      height: 20px;
-      position:relative;
-      right:-130px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .app-icon:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    }
-    .app-icon:active {
-      transform: scale(0.9);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    .app-icon img {
-      width: 20px;
-      height: 20px;
-    }
 
         
 </style>
@@ -1173,8 +750,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbuTgeQYyTprj6uHYZsQJrWnftQv9oM6yDjThwbNLM4z6F169nYbmu78trB5yYfyppx7cGZjRIkcybwx7wU9ZEVL9GIXQK5D4V0tj2EGTK2KvrMwbZFrmhvfWQSqeMK3e8JcyUnuSYvzboweoiQwyjkB_R2_JAviIDwbUDd3ff_c_yQWIMH0OUo_zWZ4M/s64/play%20%282%29.png" alt="">
   <h4>ABEFILM</h4>
 </div>
-
-  <div id="overlay" class="overlay">
+ <div id="overlay" class="overlay">
     <div class="sidebar">
       <div class="sidebar-header">
   <div class="datetime-header">
@@ -1269,14 +845,6 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   <!-- Your content goes here -->
 </div>
 
-  <!-- Icon -->
-  <div class="app-icon">
-    <a href="https://chaeunwoosshi.github.io/Modapk/">
-    <img src="https://cdn-icons-png.flaticon.com/128/2374/2374611.png" alt="Open Window Icon">
-    </a>
-  </div>
-
-  
 <div class="toggle-theme" onclick="toggleDarkMode()">
 <svg id="light-icon" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 12C18 15.3137 15.3137 18 12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12Z" fill="#1C274C"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V3C12.75 3.41421 12.4142 3.75 12 3.75C11.5858 3.75 11.25 3.41421 11.25 3V2C11.25 1.58579 11.5858 1.25 12 1.25ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H3C3.41421 11.25 3.75 11.5858 3.75 12C3.75 12.4142 3.41421 12.75 3 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM20.25 12C20.25 11.5858 20.5858 11.25 21 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H21C20.5858 12.75 20.25 12.4142 20.25 12ZM12 20.25C12.4142 20.25 12.75 20.5858 12.75 21V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V21C11.25 20.5858 11.5858 20.25 12 20.25Z" fill="#1C274C"></path> <g opacity="0.5"> <path d="M4.39838 4.39838C4.69127 4.10549 5.16615 4.10549 5.45904 4.39838L5.85188 4.79122C6.14477 5.08411 6.14477 5.55898 5.85188 5.85188C5.55898 6.14477 5.08411 6.14477 4.79122 5.85188L4.39838 5.45904C4.10549 5.16615 4.10549 4.69127 4.39838 4.39838Z" fill="#1C274C"></path> <path d="M19.6009 4.39864C19.8938 4.69153 19.8938 5.16641 19.6009 5.4593L19.2081 5.85214C18.9152 6.14503 18.4403 6.14503 18.1474 5.85214C17.8545 5.55924 17.8545 5.08437 18.1474 4.79148L18.5402 4.39864C18.8331 4.10575 19.308 4.10575 19.6009 4.39864Z" fill="#1C274C"></path> <path d="M18.1474 18.1474C18.4403 17.8545 18.9152 17.8545 19.2081 18.1474L19.6009 18.5402C19.8938 18.8331 19.8938 19.308 19.6009 19.6009C19.308 19.8938 18.8331 19.8938 18.5402 19.6009L18.1474 19.2081C17.8545 18.9152 17.8545 18.4403 18.1474 18.1474Z" fill="#1C274C"></path> <path d="M5.85188 18.1477C6.14477 18.4406 6.14477 18.9154 5.85188 19.2083L5.45904 19.6012C5.16615 19.8941 4.69127 19.8941 4.39838 19.6012C4.10549 19.3083 4.10549 18.8334 4.39838 18.5405L4.79122 18.1477C5.08411 17.8548 5.55898 17.8548 5.85188 18.1477Z" fill="#1C274C"></path> </g> </g></svg>
 
@@ -1284,37 +852,20 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 </div>
   </header>
   
-  
   <div class="bottom-menu">
   <button onclick="showContent('home')" class="active">
 <i class="fas fa-tv"></i>
  Posts</button>
   <button onclick="showContent('tools')">
 <i class="fas fa-code"></i>
- Code</button>
-
- <button onclick="showContent('add')" style="position:relative;">
-<i class="fa-solid fa-plus"></i>
-<span>Create</span>
-  <span id="pendingBadge" class="badge" style="display: none; position: absolute; top: -62px; right: -10px; background: red; color: white; padding: 2px 5px; border-radius:50px; font-size: 5px;">New</span>
- </button>
- 
-<button onclick="showContent('account')">
-<i class="fa-regular fa-user"></i>
- Account
-
-</button>
-
-
-
-
+Post Code</button>
   <button onclick="showContent('others')">
-<i class="fa-solid fa-arrow-up-from-bracket"></i>
-Upload</button>
- <!-- New button -->
+<i class="fa-brands fa-blogger-b"></i>
+Updates</button>
+
+ 
 </div>
 <div class="content" id="home">
-
 <div id="content-container">
     <div id="abefilmpost-search-container">
         <input type="text" id="abefilmpost-search-bar" placeholder="Search  by title...">
@@ -1450,9 +1001,7 @@ Upload</button>
 </script>
 
     </div>
-
 </div>
-
 <br/>
   </div>
 <div class="content" id="tools" style="display: none;">
@@ -1531,516 +1080,11 @@ Upload</button>
 </div>
 
    <div class="content" id="add" style="display: none;">
-<form class="credential-form" id="accountForm">
-  <h2>Create Account</h2>
-
-  <!-- Username field -->
-  <label class="credential-label" for="username">Username</label>
-  <input class="credential-input" type="text" id="username" name="username" required>
-
-  <!-- Password field -->
-  <label class="credential-label" for="password">Password</label>
-  <input class="credential-input" type="password" id="password" name="password" required>
-
-  <!-- Email field -->
-  <label class="credential-label" for="email">Email</label>
-  <input class="credential-input" type="email" id="email" name="email" required>
-
-  <!-- Category (Plan) selection -->
-  <label class="credential-label" for="category">Plan</label>
-  <select class="credential-select" id="category" name="category" required>
-    <option value="1 Day">1 Day (Basic - Php50)</option>
-    <option value="1 Month">1 Month (Standard - Php199)</option>
-    <option value="Lifetime">Lifetime (Special - Php299)</option>
-    <option value="Trial">Trial</option>
-  </select>
-
-  <!-- Expiration time input, shown only for "Trial" -->
-  <div class="credential-hidden" id="timeInputs">
-    <label class="credential-label" for="expirationTime">Expiration Time</label>
-    <input class="credential-input" type="datetime-local" id="expirationTime" name="expirationTime">
-  </div>
-
-  <!-- Submit button -->
-  <button class="credential-button" type="submit">Add Account</button>
-</form>
-
-     <h2 style="font-size:20px;margin:10px 0px 0px 20px">Registration Request</h2>
-       
-<!-- Tabs Section -->
-<div class="reg-tabs">
-  <button class="reg-tab reg-active" id="pendingTabButton">Pending</button>
-  <button class="reg-tab" id="verifiedTabButton">Verified</button>
-</div>
-<!-- Pending Users Container -->
-<div id="reg-pendingUsersContainer">
-  
-  <!-- Pending users will be displayed here -->
-</div>
-<!-- Verified Users Container -->
-<div id="reg-verifiedUsersContainer" style="display: none;">
-  
-  <!-- Verified users will be displayed here -->
-</div>
-<br/><br/>
-  <!-- Modal -->
-  <div id="reg-modal" class="reg-modal">
-    <div class="reg-modal-content">
-      <span class="reg-close">&times;</span>
-      <img id="reg-modal-img" src="" alt="Receipt Image">
-    </div>
-  </div>
-<script>
-// Function to copy text to clipboard
-function regCopyToClipboard(text) {
-  const tempTextArea = document.createElement('textarea');
-  tempTextArea.value = text;
-  document.body.appendChild(tempTextArea);
-  tempTextArea.select();
-  document.execCommand('copy');
-  document.body.removeChild(tempTextArea);
-}
-
-// Modal functionality
-const regModal = document.getElementById("reg-modal");
-const regModalImg = document.getElementById("reg-modal-img");
-const regCloseBtn = document.getElementsByClassName("reg-close")[0];
-
-function openModal(imageSrc) {
-  regModal.style.display = "block";
-  regModalImg.src = imageSrc;
-}
-
-regCloseBtn.onclick = function () {
-  regModal.style.display = "none";
-};
-
-window.onclick = function (event) {
-  if (event.target === regModal) {
-    regModal.style.display = "none";
-  }
-};
-
-// Mapping plan to corresponding prices
-const planPrices = {
-  basic: 50,
-  standard: 199,
-  special: 299
-};
-
-// Fetch user data from MockAPI
-fetch('https://675a0421099e3090dbe38fba.mockapi.io/chat/Registration')
-  .then(response => response.json())
-  .then(users => {
-    const verifiedContainer = document.getElementById('reg-verifiedUsersContainer');
-    const pendingContainer = document.getElementById('reg-pendingUsersContainer');
-    let totalBalance = 0;  // Variable to store the total balance
-
-    // Sort users by registration date in descending order
-    users.sort((a, b) => new Date(b.registrationDate) - new Date(a.registrationDate));
-
-    users.forEach(user => {
-      const regUserCard = document.createElement('div');
-      regUserCard.classList.add('reg-card');
-      regUserCard.style.marginLeft = "10px";
-
-      const table = document.createElement('table');
-      const tableRow1 = document.createElement('tr');
-      tableRow1.innerHTML = `
-        <td><strong>User:</strong> <span class="reg-copyable" onclick="regCopyToClipboard('${user.username}')">${user.username}</span></td>
-        <td><strong>Password:</strong> <span class="reg-copyable" onclick="regCopyToClipboard('${user.password}')">${user.password}</span></td>
-        <td><strong>Plan:</strong> ${user.plan}</td>
-        <td class="reg-status" id="reg-status-${user.id}">
-          <strong>Status:</strong> <span class="${user.status === 'Verified' ? 'reg-verified' : 'reg-pending'}">${user.status}</span>
-        </td>
-      `;
-      table.appendChild(tableRow1);
-
-      const regDetailsRow = document.createElement('tr');
-      regDetailsRow.classList.add('reg-hidden');
-      regDetailsRow.innerHTML = `
-        <td colspan="4">
-          <table>
-            <tr>
-              <th>Email</th>
-              <td>${user.email}</td>
-            </tr>
-            <tr>
-              <th>Registration Date</th>
-              <td>${new Date(user.registrationDate).toLocaleString()}</td>
-            </tr>
-            <tr>
-              <th>Receipt Image</th>
-              <td><img src="${user.image}" alt="Receipt Image" style="max-width: 100%; border-radius: 8px;" onclick="openModal('${user.image}'); event.stopPropagation();"></td>
-            </tr>
-          </table>
-        </td>
-      `;
-      table.appendChild(regDetailsRow);
-      regUserCard.appendChild(table);
-
-      regUserCard.addEventListener('click', (event) => {
-        if (!event.target.classList.contains('reg-copyable') && !event.target.closest('.reg-copyable') && event.target.tagName !== 'IMG') {
-          regDetailsRow.classList.toggle('reg-hidden');
-        }
-      });
-
-      const buttonContainer = document.createElement('div');
-      buttonContainer.classList.add('reg-button-container');
-
-      const regToggleButton = document.createElement('button');
-      regToggleButton.classList.add('reg-toggle-btn');
-      regToggleButton.innerText = user.status === 'Verified' ? 'Pending' : 'Verified';
-
-      regToggleButton.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        const newStatus = user.status === 'Verified' ? 'Pending' : 'Verified';
-
-        try {
-          const response = await fetch(`https://675a0421099e3090dbe38fba.mockapi.io/chat/Registration/${user.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: newStatus }),
-          });
-
-          if (!response.ok) throw new Error('Failed to update status on MockAPI');
-
-          user.status = newStatus;
-          const statusSpan = document.getElementById(`reg-status-${user.id}`).querySelector('span');
-          statusSpan.textContent = newStatus;
-          statusSpan.className = newStatus === 'Verified' ? 'reg-verified' : 'reg-pending';
-          regToggleButton.innerText = newStatus === 'Verified' ? 'Pending' : 'Verify';
-
-          if (newStatus === 'Verified') {
-            pendingContainer.removeChild(regUserCard);
-            verifiedContainer.appendChild(regUserCard);
-          } else {
-            verifiedContainer.removeChild(regUserCard);
-            pendingContainer.appendChild(regUserCard);
-          }
-          checkEmptyContainers();
-        } catch (error) {
-          console.error('Error updating status:', error);
-          alert('Failed to update status. Please try again.');
-        }
-      });
-
-      buttonContainer.appendChild(regToggleButton);
-
-      const regCreateButton = document.createElement('button');
-      regCreateButton.classList.add('reg-create-btn');
-      regCreateButton.innerText = 'Create';
-
-      regCreateButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        document.getElementById('username').value = user.username;
-        document.getElementById('password').value = user.password;
-        document.getElementById('email').value = user.email;
-        document.getElementById('category').value = user.plan;
-
-        if (user.plan === 'Trial') {
-          document.getElementById('timeInputs').style.display = 'block';
-        } else {
-          document.getElementById('timeInputs').style.display = 'none';
-        }
-
-        alert('Account details have been pre-filled. Please check and submit the form!');
-      });
-
-      buttonContainer.appendChild(regCreateButton);
-
-      const regDeleteButton = document.createElement('button');
-      regDeleteButton.classList.add('reg-delete-btn');
-      regDeleteButton.innerText = 'Delete';
-
-      regDeleteButton.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        if (!confirm(`Are you sure you want to delete the user "${user.username}"?`)) return;
-
-        try {
-          const response = await fetch(`https://675a0421099e3090dbe38fba.mockapi.io/chat/Registration/${user.id}`, {
-            method: 'DELETE',
-          });
-
-          if (!response.ok) throw new Error('Failed to delete user from MockAPI');
-
-          regUserCard.remove();
-          alert(`User "${user.username}" has been deleted successfully.`);
-          checkEmptyContainers();
-        } catch (error) {
-          console.error('Error deleting user:', error);
-          alert('Failed to delete the user. Please try again.');
-        }
-      });
-
-      buttonContainer.appendChild(regDeleteButton);
-      regUserCard.appendChild(buttonContainer);
-
-      // Only add verified users to the verified container
-      if (user.status === 'Verified') {
-        verifiedContainer.appendChild(regUserCard);
-
-        // Add the price of the user's plan to the total balance
-        totalBalance += planPrices[user.plan.toLowerCase()] || 0;
-      } else {
-        pendingContainer.appendChild(regUserCard);
-      }
-    });
-
-    // Display the total balance in the balance display
-    document.getElementById("balance-display").textContent = `₱${totalBalance.toLocaleString()}`;
-
-    checkEmptyContainers();
-  })
-  .catch(error => console.error('Error fetching users:', error));
-
-function checkEmptyContainers() {
-  const verifiedContainer = document.getElementById('reg-verifiedUsersContainer');
-  const pendingContainer = document.getElementById('reg-pendingUsersContainer');
-  const pendingBadge = document.getElementById('pendingBadge');
-
-  const verifiedMessage = verifiedContainer.querySelector('p');
-  if (verifiedContainer.children.length === 0) {
-    if (!verifiedMessage) {
-      verifiedContainer.innerHTML = '<p style="color:var(--text-color);opacity:0.5;margin: 40px 20px;">No verified users available.</p>';
-    }
-  } else {
-    if (verifiedMessage) {
-      verifiedContainer.removeChild(verifiedMessage);
-    }
-  }
-
-  const pendingMessage = pendingContainer.querySelector('p');
-  if (pendingContainer.children.length === 0) {
-    if (!pendingMessage) {
-      pendingContainer.innerHTML = '<p style="color:var(--text-color);opacity:0.5;margin:40px 20px;">No pending users available.</p>';
-    }
-    pendingBadge.style.display = 'none';
-  } else {
-    if (pendingMessage) {
-      pendingContainer.removeChild(pendingMessage);
-    }
-    pendingBadge.style.display = 'inline-block';
-  }
-}
-</script>
-<script>
-  // Switch between Pending and Verified Sections
-  function switchTab(tabId, targetContainer, otherTabId, otherContainer) {
-    document.getElementById(tabId).classList.add('reg-active');
-    document.getElementById(otherTabId).classList.remove('reg-active');
-    document.getElementById(targetContainer).style.display = 'block';
-    document.getElementById(otherContainer).style.display = 'none';
-  }
-
-  document.getElementById('pendingTabButton').addEventListener('click', function() {
-    switchTab('pendingTabButton', 'reg-pendingUsersContainer', 'verifiedTabButton', 'reg-verifiedUsersContainer');
-  });
-
-  document.getElementById('verifiedTabButton').addEventListener('click', function() {
-    switchTab('verifiedTabButton', 'reg-verifiedUsersContainer', 'pendingTabButton', 'reg-pendingUsersContainer');
-  });
-</script> 
-
   </div>
  <div class="content" id="account" style="display: none;">
-   
-      <div class="balance-card">
-        <h1>Account Balance</h1>
-        <p id="balance-display">Loading...</p>
-        <p class="gcash">
-        <svg style="margin-bottom:-4px;" width="15px" height="15px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path stroke="#8f8f8f" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M84 96h36c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36c9.941 0 18.941 4.03 25.456 10.544"></path><path fill="#8f8f8f" d="M145.315 66.564a6 6 0 0 0-10.815 5.2l10.815-5.2ZM134.5 120.235a6 6 0 0 0 10.815 5.201l-10.815-5.201Zm-16.26-68.552a6 6 0 1 0 7.344-9.49l-7.344 9.49Zm7.344 98.124a6 6 0 0 0-7.344-9.49l7.344 9.49ZM84 152c-30.928 0-56-25.072-56-56H16c0 37.555 30.445 68 68 68v-12ZM28 96c0-30.928 25.072-56 56-56V28c-37.555 0-68 30.445-68 68h12Zm106.5-24.235C138.023 79.09 140 87.306 140 96h12c0-10.532-2.399-20.522-6.685-29.436l-10.815 5.2ZM140 96c0 8.694-1.977 16.909-5.5 24.235l10.815 5.201C149.601 116.522 152 106.532 152 96h-12ZM84 40c12.903 0 24.772 4.357 34.24 11.683l7.344-9.49A67.733 67.733 0 0 0 84 28v12Zm34.24 100.317C108.772 147.643 96.903 152 84 152v12a67.733 67.733 0 0 0 41.584-14.193l-7.344-9.49Z"></path><path stroke="#8f8f8f" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M161.549 58.776C166.965 70.04 170 82.666 170 96c0 13.334-3.035 25.96-8.451 37.223"></path></g></svg>Gcash Account</p>
-    </div>
-
-     
-    <h2 style="font-size:20px;margin:0px 20px 20px 20px">Registered Account</h2>
-    
-  <div class="credential-tabs">
-    <div class="credential-tab active" onclick="showCategory('Lifetime')">Lifetime</div>
-    <div class="credential-tab" onclick="showCategory('Short Term')">Short Term</div>
-    <div class="credential-tab" onclick="showCategory('Trial')">Trial</div>
-  </div>
-
-  <div class="credential-account-list">
-    <ul id="accounts"></ul>
-  </div>
-
-   
-   
-
-
-
   </div>
 
  <div class="content" id="others" style="display: none;">
-    
- <h4 style="margin:60px 15px 10px 15px;">Pending Uploads</h4>    
-<div class="note-container" id="note-container">
-  <!-- Notes will be added here -->
-</div>
-
-<div class="note-floating-btn" onclick="toggleForm()">+</div>
-
-<div class="note-form-container" id="note-form-container">
-  <input type="text" id="note-title-input" placeholder="Enter note title">
-  <button onclick="addOrEditNote()">Save Note</button>
-  <button class="close-btn" onclick="closeForm()">Close</button>
-</div>
-
-<script>
-const apiURL = 'https://6779e919671ca0306832acf7.mockapi.io/saved/note';
-let isEditing = false;
-let editingNote = null;
-
-// Fetch notes from MockAPI and display them
-async function fetchNotes() {
-  try {
-    const response = await fetch(apiURL);
-    const notes = await response.json();
-    notes.forEach(note => renderNote(note));
-  } catch (error) {
-    console.error('Error fetching notes:', error);
-  }
-}
-
-// Toggle the form visibility
-function toggleForm() {
-  const form = document.getElementById('note-form-container');
-  form.classList.toggle('active');
-}
-
-// Close the form without saving
-function closeForm() {
-  const titleInput = document.getElementById('note-title-input');
-  titleInput.value = ''; // Clear the input field
-  toggleForm(); // Hide the form
-}
-
-// Add or edit a note
-async function addOrEditNote() {
-  const titleInput = document.getElementById('note-title-input');
-  const title = titleInput.value.trim();
-
-  if (title === '') {
-    alert('Please enter a title');
-    return;
-  }
-
-  const timestamp = new Date().toLocaleString();
-
-  try {
-    // Fetch existing notes for duplicate title detection
-    const response = await fetch(apiURL);
-    const notes = await response.json();
-    const duplicateNote = notes.find(
-      note => note.title.toLowerCase() === title.toLowerCase()
-    );
-
-    if (!isEditing && duplicateNote) {
-      alert('A note with this title already exists!');
-      return;
-    }
-
-    if (isEditing) {
-      // Update note on MockAPI
-      const updateResponse = await fetch(`${apiURL}/${editingNote.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, timestamp }),
-      });
-      const updatedNote = await updateResponse.json();
-
-      // Update the UI
-      document.querySelector(`[data-id="${editingNote.id}"] .note-title`).textContent = updatedNote.title;
-      document.querySelector(`[data-id="${editingNote.id}"] .note-date`).textContent = updatedNote.timestamp;
-
-      isEditing = false;
-      editingNote = null;
-    } else {
-      // Add new note to MockAPI
-      const createResponse = await fetch(apiURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, timestamp }),
-      });
-      const newNote = await createResponse.json();
-
-      // Render the new note in the UI
-      renderNote(newNote);
-    }
-  } catch (error) {
-    console.error('Error adding/editing note:', error);
-  }
-
-  titleInput.value = '';
-  toggleForm();
-}
-
-// Delete a note
-async function deleteNote(id) {
-  try {
-    await fetch(`${apiURL}/${id}`, { method: 'DELETE' });
-    document.querySelector(`[data-id="${id}"]`).remove();
-  } catch (error) {
-    console.error('Error deleting note:', error);
-  }
-}
-
-// Edit a note
-function editNote(note) {
-  const titleInput = document.getElementById('note-title-input');
-  titleInput.value = note.title;
-
-  isEditing = true;
-  editingNote = note;
-
-  toggleForm();
-}
-
-// Render a single note
-function renderNote(note) {
-  const notesContainer = document.getElementById('note-container');
-
-  const noteElement = document.createElement('div');
-  noteElement.className = 'note-item';
-  noteElement.setAttribute('data-id', note.id);
-
-  const noteTitle = document.createElement('h4');
-  noteTitle.className = 'note-title';
-  noteTitle.textContent = note.title;
-
-  const noteDate = document.createElement('p');
-  noteDate.className = 'note-date';
-  noteDate.textContent = note.timestamp;
-
-  const actions = document.createElement('div');
-  actions.className = 'note-actions';
-
-  const editButton = document.createElement('button');
-  editButton.className = 'edit-button';
-  editButton.textContent = 'Edit';
-  editButton.onclick = () => editNote(note);
-
-  const doneButton = document.createElement('button');
-  doneButton.className = 'done-button';
-  doneButton.textContent = 'Done';
-  doneButton.onclick = () => deleteNote(note.id);
-
-  actions.appendChild(editButton);
-  actions.appendChild(doneButton);
-
-  noteElement.appendChild(noteTitle);
-  noteElement.appendChild(noteDate);
-  noteElement.appendChild(actions);
-
-  notesContainer.appendChild(noteElement);
-}
-
-
-// Initialize app by fetching notes
-fetchNotes();
-</script>
-
   </div>
 
 <script>
