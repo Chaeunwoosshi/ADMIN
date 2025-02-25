@@ -1107,36 +1107,43 @@ Publish</button>
 <div class="content" id="others" style="display: none; padding: 10px;">
   
   <h3>Create Blogger Post</h3>
-  <p style="font-size:12px;"><span style="color:crimson">🔑Note:</span> For Authorized Admin Only</p>
-  <form id="bloggerForm">
-      <input type="text" id="title" placeholder="Enter Title" required />
-      <textarea id="content" rows="5" placeholder="Enter Content" required></textarea>
-      <input type="text" id="labels" placeholder="Enter Labels (comma separated)" required />
-      <button class="createpostbtn" type="submit">Publish Post</button>
-  </form>
+    <p style="font-size:12px;"><span style="color:crimson">🔑Note:</span> For Authorized Admin Only</p>
 
-  <div id="responseMessage"></div>
-  
-</div>
+    <form id="bloggerForm">
+        <input type="text" id="title" placeholder="Enter Title" required />
+        <textarea id="content" rows="5" placeholder="Enter Content" required></textarea>
+        <input type="text" id="labels" placeholder="Enter Labels (comma separated)" required />
+        <button class="createpostbtn" type="submit">Publish Post</button>
+    </form>
+
+    <div id="responseMessage"></div>
 
     <script>
         document.getElementById('bloggerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Gather form data
             const title = document.getElementById('title').value;
             const content = document.getElementById('content').value;
             const labels = document.getElementById('labels').value.split(',').map(label => label.trim());
 
             try {
-                const response = await fetch('http://localhost:3000/create-post', {
+                // Replace with your deployed API URL
+                const response = await fetch('https://your-app-name.vercel.app/api/createPost', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ title, content, labels })
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ title, content, labels }),
+                    mode: 'cors',  // Ensure that CORS is allowed
                 });
 
                 const result = await response.json();
+
+                // Display success or error message
                 document.getElementById('responseMessage').innerText = result.message || 'Post created successfully!';
             } catch (error) {
+                // Handle errors from the API
                 document.getElementById('responseMessage').innerText = 'Error: ' + error.message;
             }
         });
