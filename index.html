@@ -1104,20 +1104,21 @@ Publish</button>
 <div class="content" id="account" style="display: none;">
 </div>
 
-<div class="content" id="others" style="display: none; padding: 10px;">
-  
-  <h3>Create Blogger Post</h3>
-  <p style="font-size:12px;"><span style="color:crimson">🔑Note:</span> For Authorized Admin Only</p>
-  <form id="bloggerForm">
-      <input type="text" id="title" placeholder="Enter Title" required />
-      <textarea id="content" rows="5" placeholder="Enter Content" required></textarea>
-      <input type="text" id="labels" placeholder="Enter Labels (comma separated)" required />
-      <button class="createpostbtn" type="submit">Publish Post</button>
-  </form>
 
-  <div id="responseMessage"></div>
-  
-</div>
+<div class="content" id="others" style="display: none; padding: 10px;">
+
+
+         <h3>Create Blogger Post</h3>
+    <p style="font-size:12px;"><span style="color:crimson">🔑Note:</span> For Authorized Admin Only</p>
+        <form id="bloggerForm">
+            <input type="text" id="title" placeholder="Enter Title" required />
+            <textarea id="content" rows="5" placeholder="Enter Content" required></textarea>
+            <input type="text" id="labels" placeholder="Enter Labels (comma separated)" required />
+            <button type="submit">Create Post</button>
+        </form>
+
+        <div id="responseMessage"></div>
+
 
     <script>
         document.getElementById('bloggerForm').addEventListener('submit', async (e) => {
@@ -1141,6 +1142,7 @@ Publish</button>
             }
         });
     </script>
+
 
  
  
