@@ -397,12 +397,32 @@ border:
             text-transform: capitalize;
             
         }
-        .abefilmpost-movie-grid {
-          
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+       .abefilmpost-movie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+    gap: 10px;
+}
+
+
+@media (max-width: 767px) {
+   .abefilmpost-thumbnail {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
         }
+}
+@media (min-width: 768px) {
+    .abefilmpost-movie-grid {
+        grid-template-columns: repeat(8, 1fr); /* 8 columns for desktop */
+    }
+ .abefilmpost-thumbnail {
+        width: 100%;
+        height: 200px; /* Set the height */
+        object-fit: cover; /* Maintain the aspect ratio and cover the container */
+        display: block; /* Ensure the image behaves like a block-level element */
+    }
+}
+
         .abefilmpost-movie-card {
             background-color: var(--background-color);
             border-radius: 8px;
@@ -413,11 +433,7 @@ border:
         .abefilmpost-movie-card:hover {
             transform: scale(1.05);
         }
-        .abefilmpost-thumbnail {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-        }
+      
         .abefilmpost-movie-info {
             padding: 5px;
             text-align: center;
@@ -516,7 +532,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   height:100px;
   overflow:auto;
 }
-  #copyBtn, #generateBtn, #copyBtn3, #generateBtn3, #addEpisodeBtn, #removeTableBtn, #removeSynopsisBtn {
+  #copyBtn, #generateBtn, #copyBtn3, #generateBtn3, #addEpisodeBtn, #removeTableBtn, #removeSynopsisBtn, .createpostbtn {
     display: block;
     margin:15px auto;
    border-radius:8px;
@@ -732,7 +748,18 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
   
 
-        
+  /* For Blogger posting */
+   
+   #responseMessage {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+   
+   
+   
+   
 </style>
 </head>
 <body>
@@ -851,7 +878,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 Post Code</button>
   <button onclick="showContent('others')">
 <i class="fa-brands fa-blogger-b"></i>
-Updates</button>
+Publish</button>
 
  
 </div>
@@ -1045,9 +1072,8 @@ Updates</button>
   <label for="synopsisInput"></label>
   <textarea id="synopsisInput" placeholder="Synopsis"></textarea>
   
-  
     <button id="removeTableBtn">Remove Other Details</button>
-  
+
   
   <label for="castsInput"></label>
   <input type="text" id="castsInput" placeholder="Enter Cast(s)">
@@ -1061,194 +1087,64 @@ Updates</button>
   <label for="countryInput"></label>
   <input type="text" id="countryInput" placeholder="Enter Country">
   
-  
-  <button id="generateBtn">Generate Code</button>
-  <button id="copyBtn">Copy</button>
-  <textarea id="codeOutput" rows="10"></textarea>
- 
+ <button id="generateBtn">Generate Code</button>
+<button id="copyBtn">Copy</button>
+<textarea id="codeOutput" rows="10"></textarea>
+
+
+
 </div>
 </div>
 <br/>
 </div>
 
-   <div class="content" id="add" style="display: none;">
-  </div>
- <div class="content" id="account" style="display: none;">
-  </div>
+<div class="content" id="add" style="display: none;">
+</div>
 
- <div class="content" id="others" style="display: none; padding: 10px;">
-    <style>
-  
-  
-  
-        .version-download-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px; /* Add some space below */
-      } 
-        
-        
-        .original-button {
-          padding: 5px 10px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          line-height: 1.8;
-          text-decoration: none;
-          color: #ffffff;
-          font-size: 15px;
-          font-weight: normal;
-          border-radius: 20px;
-          width: auto;
-          height: auto;
-          background: linear-gradient(to right, #07B92A, #04A726);
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-          transition: all 0.3s ease;
-        }
-      
-        .original-button:hover {
-          background: linear-gradient(to right, #04A726, #028A1F);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-          transform: translateY(-3px);
-        }
-      
-        .original-button i {
-          margin-right: 8px;
-          font-size: 15px;
-        }
-      
-        
-        .changelog{
-          padding:10px 20px;
-          }
-        .old-update{
-          margin-top:10px;
-          border:solid 1px  #76767682;
-       
-          border-radius:10px;
-      
-          
-          }
-      
-        .logs {
-          border:solid 1px #7676763e;
-          
-          border-radius:10px;
-          margin-top:0px;
-        }
-           
-        .logs p {
-          font-size: 18px;
-          color:#03b303;
-          text-align:center;
-          text-transform: uppercase;   
-          margin-bottom: 10px;
-          padding: 0 20px 10px 20px;
-        }
-      
-        .logs ul {
-          padding: 0;
-          list-style-type: none;
-        }
-      
-        .logs li {
-          background: url('https://via.placeholder.com/15') no-repeat left center;
-          background-size: 15px 15px;
-          padding: 0px 0 0px 5px;
-          
-          font-size: 15px;
-        }
-      
-        .logs li:hover, .old-update li:hover {
-          font-weight: bold;
-        }
-          
-        
-       .logs img {   
-          border-radius: 10px 10px 0 0;         
-          
-        }
-      
-       
-        
-      </style>
-      
-      <body>
-       
-        
-      
-        <!-- Logs Update Section -->
-        <div class="logs">
-          <img style="width:100%;" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpsyqn-zFtpIlH700NHQlNIR4dzyR9_mMgeSZ20VA2kK8q1eeVcIQ1yvLjovinEq-SUXwO26xYK2hd6ER7MmzEHJDnUs3x9Y6vjVBE3q1YaBI-kvTAgtkRaI3kNuJqYxGqGqEzv92XBnkO0jm72IpjUpacgjP5fKF8E-RnFSCa00RjRFAFRnw1UTfktIA/s1280/6185939279742617406.jpg"/>
-        <p>New Update: January 24, 2025</p>
-        
-          <div class="changelog">
-          <div class="version-download-container">
-            <span class="version">ABEFILM V2</span>
-            <a href="https://tinyurl.com/abefilmofficialapp" class="original-button">
-              <i class="fas fa-download"></i> Download APK
-            </a>
-          </div>
-          
-          <ul>
-            <li>More smooth interface</li>     
-            <li>Colorful Design</li>  
-            <li>Remove Login System</li>
-            <li>Free Request </li>
-          </ul>
-            </div>
-      
-        
-        </div>
-      <div class="old-update">
-          
-        
-          <div class="changelog">
-          <div class="version-download-container">
-            <span class="version">ABEFILM V1.2</span>
-            
-          <span> December 18, 2024</span>
-      
-          </div>
-          
-          <ul>
-            <li>Fixed Bugs & Smooth Interface</li>          
-           <li>Offer More Short Dramas</li>
-          <li>With Login System</li>
-          </ul>
-            </div>
-      
-        
-        </div>
-      <div class="old-update">
-          
-        
-          <div class="changelog">
-          <div class="version-download-container">
-            <span class="version">ABEFILM V1</span>
-            
-          <span> November 3, 2024</span>
-      
-          </div>
-          
-          <ul>
-       <li> Smooth Interface</li>
-            
-           
-        <li> Free Movies/Series </li>
-          </ul>
-            </div>
-      
-        
-        </div>
-        
-        <!-- FontAwesome for download icon -->
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-      </body>
-      
+<div class="content" id="account" style="display: none;">
+</div>
 
-  </div>
+<div class="content" id="others" style="display: none; padding: 10px;">
+  
+  <h3>Create Blogger Post</h3>
+  <p style="font-size:12px;"><span style="color:crimson">🔑Note:</span> For Authorized Admin Only</p>
+  <form id="bloggerForm">
+      <input type="text" id="title" placeholder="Enter Title" required />
+      <textarea id="content" rows="5" placeholder="Enter Content" required></textarea>
+      <input type="text" id="labels" placeholder="Enter Labels (comma separated)" required />
+      <button class="createpostbtn" type="submit">Publish Post</button>
+  </form>
+
+  <div id="responseMessage"></div>
+  
+</div>
+
+    <script>
+        document.getElementById('bloggerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const labels = document.getElementById('labels').value.split(',').map(label => label.trim());
+
+            try {
+                const response = await fetch('http://localhost:3000/create-post', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, content, labels })
+                });
+
+                const result = await response.json();
+                document.getElementById('responseMessage').innerText = result.message || 'Post created successfully!';
+            } catch (error) {
+                document.getElementById('responseMessage').innerText = 'Error: ' + error.message;
+            }
+        });
+    </script>
+
+ 
+ 
+  
 
 <script>
   // JavaScript
